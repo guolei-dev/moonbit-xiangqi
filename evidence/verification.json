@@ -1,0 +1,49 @@
+{
+  "project": "xiangqi",
+  "checks": [
+    {
+      "command": "moon fmt",
+      "exit_code": 0,
+      "output": "Finished. moon: ran 8 tasks, now up to date\n",
+      "utc": "2026-09-10T06:02:12.196102+00:00"
+    },
+    {
+      "command": "moon info",
+      "exit_code": 0,
+      "output": "Finished. moon: ran 2 tasks, now up to date\n",
+      "utc": "2026-09-10T06:02:12.757290+00:00"
+    },
+    {
+      "command": "moon check --deny-warn",
+      "exit_code": 0,
+      "output": "Finished. moon: ran 2 tasks, now up to date\n",
+      "utc": "2026-09-10T06:02:14.089437+00:00"
+    },
+    {
+      "command": "moon test --target wasm-gc --deny-warn",
+      "exit_code": 0,
+      "output": "Total tests: 8, passed: 8, failed: 0.\n",
+      "utc": "2026-09-10T06:02:14.873000+00:00"
+    },
+    {
+      "command": "moon test --target js --deny-warn",
+      "exit_code": 0,
+      "output": "Total tests: 8, passed: 8, failed: 0.\n",
+      "utc": "2026-09-10T06:02:15.398777+00:00"
+    },
+    {
+      "command": "moon build --target js --deny-warn",
+      "exit_code": 0,
+      "output": "Finished. moon: no work to do\n",
+      "utc": "2026-09-10T06:02:16.368585+00:00"
+    },
+    {
+      "command": "moon run cmd/main",
+      "exit_code": 0,
+      "output": "FEN: rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR w\nLegal moves: 44\na3a4 c3c4 e3e4 g3g4 i3i4 b2b9 b2b6 b2b5 b2b4 b2b3 b2a2 b2c2 b2d2 b2e2 b2f2 b2g2 b2b1 h2h9 h2h6 h2h5 h2h4 h2h3 h2c2 h2d2 h2e2 h2f2 h2g2 h2i2 h2h1 a0a2 a0a1 b0a2 b0c2 c0a2 c0e2 d0e1 e0e1 f0e1 g0e2 g0i2 h0g2 h0i2 i0i2 i0i1\nBest (depth 2): b2b9\n",
+      "utc": "2026-09-10T06:02:16.952589+00:00"
+    }
+  ],
+  "demo": "FEN: rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR w\nLegal moves: 44\na3a4 c3c4 e3e4 g3g4 i3i4 b2b9 b2b6 b2b5 b2b4 b2b3 b2a2 b2c2 b2d2 b2e2 b2f2 b2g2 b2b1 h2h9 h2h6 h2h5 h2h4 h2h3 h2c2 h2d2 h2e2 h2f2 h2g2 h2i2 h2h1 a0a2 a0a1 b0a2 b0c2 c0a2 c0e2 d0e1 e0e1 f0e1 g0e2 g0i2 h0g2 h0i2 i0i2 i0i1\nBest (depth 2): b2b9",
+  "source_lines": 416
+}

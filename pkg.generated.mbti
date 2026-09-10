@@ -1,0 +1,38 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "localreview/xiangqi"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn initial() -> Board
+
+pub fn parse_fen(String) -> Board raise ChessError
+
+// Errors
+pub suberror ChessError {
+  Invalid(String)
+} derive(@debug.Debug)
+
+// Types and methods
+pub struct Board {
+  cells : Array[Int]
+  red : Bool
+} derive(Eq, @debug.Debug)
+pub fn Board::best_move(Self, Int, node_limit? : Int) -> Move? raise ChessError
+pub fn Board::fen(Self) -> String
+pub fn Board::in_check(Self, Bool) -> Bool
+pub fn Board::legal_moves(Self) -> Array[Move]
+pub fn Board::perft(Self, Int) -> Int raise ChessError
+pub fn Board::play(Self, String) -> Self raise ChessError
+
+pub(all) struct Move {
+  from : Int
+  to : Int
+} derive(Eq, @debug.Debug)
+pub fn Move::coordinate(Self) -> String
+
+// Type aliases
+
+// Traits

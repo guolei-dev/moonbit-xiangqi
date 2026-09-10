@@ -1,0 +1,5 @@
+import {
+  "localreview/xiangqi" @lib,
+}
+
+pkgtype(kind: "executable")
