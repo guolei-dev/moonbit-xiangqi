@@ -27,6 +27,13 @@ pub fn Board::legal_moves(Self) -> Array[Move]
 pub fn Board::perft(Self, Int) -> Int raise ChessError
 pub fn Board::play(Self, String) -> Self raise ChessError
 
+pub struct Engine {
+  mut board : Board
+  mut closed : Bool
+} derive(@debug.Debug)
+pub fn Engine::command(Self, String) -> String raise ChessError
+pub fn Engine::new() -> Self
+
 pub(all) struct Move {
   from : Int
   to : Int
