@@ -11,6 +11,11 @@ pub fn Engine::new() -> Engine {
 }
 
 ///|
+pub fn Engine::fen(self : Engine) -> String {
+  self.board.fen()
+}
+
+///|
 pub fn Engine::command(self : Engine, line : String) -> String raise ChessError {
   if self.closed {
     raise Invalid("engine closed")
@@ -67,13 +72,17 @@ pub fn Engine::command(self : Engine, line : String) -> String raise ChessError 
     }
     "go" => {
       if args.length() != 3 || args[1] != "depth" {
-        raise Invalid("only go depth 1..3 supported")
+        raise Invalid("synchronous core supports go depth 1..64")
       }
-      let depth = match args[2] {
-        "1" => 1
-        "2" => 2
-        "3" => 3
-        _ => raise Invalid("depth range")
+      let mut depth = 0
+      if args[2].is_empty() || args[2].length() > 2 {
+        raise Invalid("depth range")
+      }
+      for c in args[2] {
+        if c < '0' || c > '9' {
+          raise Invalid("depth range")
+        }
+        depth = depth * 10 + c.to_int() - 48
       }
       "bestmove " +
       (match self.board.best_move(depth) {

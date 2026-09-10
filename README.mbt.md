@@ -30,4 +30,4 @@ test "UCCI ready position go quit session" {
 }
 ```
 
-限制：未提供持久在线 UCCI 进程、异步 stop/时间管理、开局库、重复局面判定；不是专业棋力引擎。
+持续进程及异步停止见 `node tools/engine.mjs`。正式重复/长将/长捉裁决、开局库与专业棋力仍未完成。

@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-10T16:16:02.347Z",
+  "source": "https://github.com/fairy-stockfish/Fairy-Stockfish/blob/master/tests/perft.sh",
+  "node": "v24.11.0",
+  "results": [
+    {
+      "fen": "rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR w",
+      "depth": 4,
+      "expected": 3290240,
+      "actual": 3290240,
+      "milliseconds": 1588
+    },
+    {
+      "fen": "1rbaka2R/5r3/6n2/2p1p1p2/4P1bP1/PpC3Bc1/1nPR2P2/2N2AN2/1c2K1p2/2BAC4 w",
+      "depth": 4,
+      "expected": 4485547,
+      "actual": 4485547,
+      "milliseconds": 2358
+    },
+    {
+      "fen": "4kcP1N/8n/3rb4/9/9/9/9/3p1A3/4K4/5CB2 w",
+      "depth": 4,
+      "expected": 92741,
+      "actual": 92741,
+      "milliseconds": 43
+    }
+  ]
+}

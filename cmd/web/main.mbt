@@ -35,6 +35,81 @@ pub fn run(input : String) -> String {
 }
 
 ///|
+pub fn position(command : String) -> String {
+  try {
+    let e = @lib.Engine::new()
+    ignore(e.command(command))
+    e.fen()
+  } catch {
+    e => "ERROR: " + Repr(e).to_string()
+  }
+}
+
+///|
+pub fn legal(fen : String) -> String {
+  @lib.parse_fen(fen).legal_moves().map(m => m.coordinate()).join(" ") catch {
+    e => "ERROR: " + Repr(e).to_string()
+  }
+}
+
+///|
+pub fn perft(fen : String, depth : Int) -> String {
+  @lib.parse_fen(fen).perft(depth).to_string() catch {
+    e => "ERROR: " + Repr(e).to_string()
+  }
+}
+
+///|
+fn info(result : @lib.SearchResult) -> String {
+  let magnitude = if result.score < 0 { -result.score } else { result.score }
+  let score = if magnitude >= 999000 {
+    let distance = (1000000 - magnitude + 1) / 2
+    "mate " + (if result.score < 0 { -distance } else { distance }).to_string()
+  } else {
+    // A pre-river pawn is 60 internal units; expose centipawns to UCI hosts.
+    "cp " + (result.score * 100 / 60).to_string()
+  }
+  "info depth " +
+  result.depth.to_string() +
+  " score " +
+  score +
+  " nodes " +
+  result.nodes.to_string() +
+  (match result.best {
+    Some(m) => " pv " + m.coordinate()
+    None => ""
+  })
+}
+
+///|
+pub fn search_position(
+  fen : String,
+  depth : Int,
+  nodes : Int,
+  should_stop : () -> Bool,
+  on_info : (String) -> Unit,
+) -> String {
+  try {
+    let result = @lib.parse_fen(fen).search(
+      depth,
+      node_limit=nodes,
+      should_stop~,
+      on_iteration=r => on_info(info(r)),
+    )
+    if result.stopped || result.depth == 0 {
+      on_info(info(result))
+    }
+    "bestmove " +
+    (match result.best {
+      Some(m) => m.coordinate()
+      None => "0000"
+    })
+  } catch {
+    e => "ERROR: " + Repr(e).to_string()
+  }
+}
+
+///|
 fn main {
 
 }

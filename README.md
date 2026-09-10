@@ -1,66 +1,59 @@
-# 中国象棋规则与搜索
+# 中国象棋规则与本地引擎
 
-MoonBit 本地候选版 0.2.0。FEN、全部棋子走法、将军过滤与有限深度搜索。
+MoonBit 本地候选版 0.3.0。规则、FEN、合法走法与搜索由 MoonBit 实现；Node.js 提供持续运行的引擎进程、工作线程、时钟和标准输入输出。
 
-## 快速试用
+## 直接运行
 
-已附真实 MoonBit 编译的浏览器引擎。需要 Python 3：
+已附编译的引擎，需要 Node.js 24：
+
+```powershell
+node tools/engine.mjs
+```
+
+逐行输入：
+
+```text
+uci
+isready
+position startpos moves h2e2 h9g7
+go depth 4
+go movetime 1000
+quit
+```
+
+每次 `go` 后等到 `bestmove` 再开始下一次搜索。`go infinite` 可随时用 `stop` 结束；搜索期间 `isready` 仍响应。`position` 中走子非法时保留原局面。读取到输入结束会等待有限搜索完成；`quit` 会立即关闭工作线程。
+
+UCI 支持 `uci/isready/ucinewgame/position/go/stop/quit`；`go` 支持 `depth`、`nodes`、`movetime`、`wtime/btime`、`winc/binc`、`movestogo`、`infinite`，时钟单位毫秒。剩余时间按剩余步数分配，预留 20 毫秒并限制增量的使用。UCCI 支持握手及相同的基础局面/深度/停止命令；**未实现 UCCI 专用时间格式与全部协议选项**。不支持 `ponder`、`searchmoves`、开局库或 `setoption`；不支持的命令返回 `info string error`。
+
+网页与原有文件 CLI 仍可使用：
 
 ```powershell
 ./start-review.ps1
-```
-
-浏览器打开 http://127.0.0.1:8800/web/ 。也可以从第二批合集审查页直接运行。
-
-## 构建与测试
-
-MoonBit 工具链与 Node.js 安装好后，在此目录运行：
-
-```powershell
-./verify.ps1
-# 或指定编译器
-./verify.ps1 -MoonPath C:/path/to/moon/bin/moon.exe
-```
-
-脚本检查源码、在 Wasm-GC 和 JS 跑测试、构建浏览器引擎并运行示例。直接执行命令行示例：`moon run cmd/main`。`pkg.generated.mbti` 是生成的公共 API。
-
-## 已实现范围
-
-FEN、全部棋子走法、将军过滤与有限深度搜索。示例输入与调用逻辑见 `cmd/main/main.mbt`；网页允许修改输入并执行实际编译代码。
-
-## 当前边界
-
-标准棋子走法、自将过滤、FEN 和最多 3 层的预算搜索；不含持久在线 UCI/UCCI 服务、开局库、置换表、长将/长捉判定和比赛时钟，尚未达到专业对弈引擎水平。
-
-## 来源与许可证
-
-按[公开规格/参考项目](https://github.com/bupticybee/elephantfish)重新实现，没有复制上游代码或大规模词库。源码采用 MIT；原始测试输入为本地新编写。
-
-[查重](DUPLICATION.md)只描述本轮检索证据。`localreview` 是本地命名空间，正式发布前需替换为申请人的命名空间。
-
-## 下一步
-
-优先：最适合现场演示，下一步做棋盘交互、持久在线 UCCI 和时间管理。
-
-所有文件仅在本地，未创建远程仓库、上传、发布包或提交比赛。
-
-## 独立仓库工作流
-
-本目录是该项目后续开发的唯一主仓库，旧批次目录及 ZIP 为历史审查快照。没有 Git remote，没有共享构建目录，没有上级 moon.work。
-
-真实 CLI 支持输入参数、文件和标准输入：
-
-```powershell
-node tools/cli.mjs --help
 node tools/cli.mjs --file sample.txt --json
 ```
 
-需要安装 MoonBit 后传 `-MoonPath` 或将 moon 加入 PATH；不依赖工作区之外的私有脚本。详见 [TESTING.md](TESTING.md) 和 [CONTRIBUTING.md](CONTRIBUTING.md)。
+网页地址为 http://127.0.0.1:8800/web/ 。同步网页/示例搜索不能响应异步停止；持续进程请使用 `tools/engine.mjs`。
 
-## 本轮功能升级
+## 搜索与接口
 
-增加同步 UCCI 命令核心：握手、准备、局面、走子、有限深度搜索及退出。
+- 按棋子生成候选走法，再过滤阻挡与自将；支持全部标准棋子走法、将帅照面、FEN 和 `perft` 深度 0–4。
+- `Board::search` 使用深度 1–64 的迭代 alpha-beta、最多 8 层吃子静态搜索、受将时逃将搜索，以及最多 50,000 项的走法排序缓存。评估目前主要是子力与过河兵价值，未证明专业棋力。
+- `SearchResult` 返回走法、分数、已完成深度、访问节点数和停止标志。预算/取消返回上一轮完整结果；若一轮也未完成，深度为 0，返回合法备用走法。无合法走法返回 `None`，困毙同将死判负。
+- `should_stop` 回调在每轮开始及每 64 个节点检查；`on_iteration` 只报告完整轮次。节点预算 1–1,000,000,000。计数包括静态搜索节点，不包括根节点或备用走法生成。
+- `Board::best_move` 保留原来的耗尽预算报错行为；需要平稳中止时用 `search`。同步 `Engine::command` 保留为无传输的基础会话 API。
 
-未提供持久在线 UCCI 进程、异步 stop/时间管理、开局库、重复局面判定；不是专业棋力引擎。
+搜索路径中遇到重复局面暂按 0 分处理以避免循环；**这不是长将、长捉或正式重复局面的裁决**。走法排序缓存不缓存分数，避免把依赖搜索路径的重复分数当作固定局面值。FEN 后续计数未进入棋局历史，尚不提供完整合法局面校验。
 
-[可执行 API 示例](README.mbt.md)会随测试运行；[功能边界](FEATURES.md)和[测试说明](TESTING.md)用于独立审查。网页与 CLI 展示示例入口，新 API 的完整使用见可执行示例。
+公共 API 见编译器生成的 [pkg.generated.mbti](pkg.generated.mbti)，可执行示例见 [README.mbt.md](README.mbt.md)。
+
+## 构建、验证与当前差距
+
+安装 MoonBit 后运行 `./verify.ps1`，或 `./verify.ps1 -MoonPath C:/path/to/moon/bin/moon.exe`。单独运行新进程检查：`node tools/test-engine.mjs`；独立公开 perft 向量：`node tools/test-perft.mjs`。细节及实际运行记录见 [TESTING.md](TESTING.md) 和 `evidence/`。
+
+仍缺正式重复/长将/长捉裁决、棋局历史、开局库、完整协议选项、专业评估与棋力比赛、真实 GUI 长期对弈和跨平台时间精度证据。具体边界见 [FEATURES.md](FEATURES.md)，不能由测试通过推断已追平上游。
+
+## 来源与本地仓库
+
+参考 [Elephantfish](https://github.com/bupticybee/elephantfish) 的公开能力范围独立实现，未复制其搜索代码。UCI 命令参考 [Pikafish 官方说明](https://github.com/official-pikafish/Pikafish/wiki/UCI-&-Commands)，perft 数值来自 [Fairy-Stockfish 测试](https://github.com/fairy-stockfish/Fairy-Stockfish/blob/master/tests/perft.sh)。本仓库源码为 MIT；独立参考引擎不随仓库分发。
+
+本目录是唯一开发主仓库，独立 Git/构建目录，无 remote。所有改动仅本地，未上传、发布或提交比赛。旧批次目录、ZIP 和 Git bundle 是历史快照，本轮未重打包。[查重记录](DUPLICATION.md)保留其原验证范围。

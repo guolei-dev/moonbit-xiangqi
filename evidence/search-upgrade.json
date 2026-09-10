@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-10T16:16:02.4906099Z",
+  "version": "0.3.0",
+  "javascriptTests": 14,
+  "processFixtureGroups": 11,
+  "referencePerftVectors": 3,
+  "referenceEngineExecuted": false,
+  "wasmGcRerun": false,
+  "archivesRebuilt": false,
+  "sourceSha256": {
+    "search.mbt": "30c5f3f558a6c2f4ea9986e4db2369f545894bb1c04843eed068501406109f1f",
+    "usability.mbt": "e4bdcc012c46931d2db638a00940aaae1ba2b99cdf883738a3b2d137021c50d8",
+    "tools/engine-worker.mjs": "c776167c1db206a6589afaed9c2e58526a99ff0929297f15a5ca25a4e3bcaf46",
+    "web/engine.mjs": "746e1788b55ff24b48adeb167e0208fb6bbf25be0809207b3b2cb8565d75aa84",
+    "board.mbt": "880e7a6c99bf15c4b1b850f1490333c9bf96d28f6a8b3aab1caddd61c945f016",
+    "cmd/web/main.mbt": "19b06350695ca5bd39cc6b1922c20ff9290161405bc5508dae09b8ab5400acb7",
+    "tools/engine.mjs": "cb28a0c2c3bb886a531342ad53d47081434dcdd92839e62d9c1d19095889c6e6"
+  }
+}

@@ -235,7 +235,45 @@ pub fn Board::legal_moves(self : Board) -> Array[Move] {
     if p == 0 || (p > 0) != self.red {
       continue
     }
-    for j in 0..<90 {
+    let x = i % 9
+    let y = i / 9
+    let targets : Array[Int] = []
+    // Generate geometrically reachable squares before testing blockers and check.
+    if abs(p) == 5 || abs(p) == 6 || abs(p) == 1 {
+      for tx in 0..<9 {
+        targets.push(y * 9 + tx)
+      }
+      for ty in 0..<10 {
+        if ty != y {
+          targets.push(ty * 9 + x)
+        }
+      }
+    } else {
+      let offsets = match abs(p) {
+        2 => [(1, 1), (1, -1), (-1, 1), (-1, -1)]
+        3 => [(2, 2), (2, -2), (-2, 2), (-2, -2)]
+        4 =>
+          [
+            (2, 1),
+            (2, -1),
+            (-2, 1),
+            (-2, -1),
+            (1, 2),
+            (1, -2),
+            (-1, 2),
+            (-1, -2),
+          ]
+        _ => [(0, if p > 0 { -1 } else { 1 }), (1, 0), (-1, 0)]
+      }
+      for (dx, dy) in offsets {
+        let tx = x + dx
+        let ty = y + dy
+        if tx >= 0 && tx < 9 && ty >= 0 && ty < 10 {
+          targets.push(ty * 9 + tx)
+        }
+      }
+    }
+    for j in targets {
       if self.pseudo(i, j) {
         let m = Move::{ from: i, to: j, }
         if !self.apply(m).in_check(self.red) {
@@ -289,76 +327,36 @@ fn Board::evaluate(self : Board) -> Int {
 }
 
 ///|
-priv struct Search {
-  mut nodes : Int
-  limit : Int
-}
-
-///|
-fn Search::visit(
-  self : Search,
-  b : Board,
-  depth : Int,
-  alpha : Int,
-  beta : Int,
-) -> Int raise ChessError {
-  self.nodes += 1
-  if self.nodes > self.limit {
-    raise Invalid("search node budget")
-  }
-  if depth == 0 {
-    return b.evaluate()
-  }
-  let moves = b.legal_moves()
-  if moves.is_empty() {
-    return -100000 - depth
-  }
-  let mut best = alpha
-  for m in moves {
-    let value = -self.visit(b.apply(m), depth - 1, -beta, -best)
-    if value > best {
-      best = value
-    }
-    if best >= beta {
-      break
-    }
-  }
-  best
-}
-
-///|
 pub fn Board::best_move(
   self : Board,
   depth : Int,
   node_limit? : Int = 50000,
 ) -> Move? raise ChessError {
-  if depth < 1 || depth > 3 || node_limit < 1 || node_limit > 1000000 {
+  if depth < 1 || depth > 64 || node_limit < 1 || node_limit > 1000000 {
     raise Invalid("search bounds")
   }
-  let s = Search::{ nodes: 0, limit: node_limit, }
-  let mut best = None
-  let mut score = -10000000
-  for m in self.legal_moves() {
-    let value = -s.visit(self.apply(m), depth - 1, -10000000, -score)
-    if value > score {
-      score = value
-      best = Some(m)
-    }
+  let result = self.search(depth, node_limit~)
+  if result.stopped {
+    raise Invalid("search node budget")
   }
-  best
+  result.best
 }
 
 ///|
 pub fn Board::perft(self : Board, depth : Int) -> Int raise ChessError {
-  if depth < 0 || depth > 2 {
-    raise Invalid("perft depth 0..2")
+  if depth < 0 || depth > 4 {
+    raise Invalid("perft depth 0..4")
   }
   if depth == 0 {
     return 1
   }
   let mut n = 0
   for m in self.legal_moves() {
-    n += self.apply(m).perft(depth - 1)
+    let children = self.apply(m).perft(depth - 1)
+    if n > 2147483647 - children {
+      raise Invalid("perft count exceeds Int")
+    }
+    n += children
   }
   n
 }

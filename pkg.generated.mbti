@@ -26,12 +26,14 @@ pub fn Board::in_check(Self, Bool) -> Bool
 pub fn Board::legal_moves(Self) -> Array[Move]
 pub fn Board::perft(Self, Int) -> Int raise ChessError
 pub fn Board::play(Self, String) -> Self raise ChessError
+pub fn Board::search(Self, Int, node_limit? : Int, should_stop? : () -> Bool, on_iteration? : (SearchResult) -> Unit) -> SearchResult raise ChessError
 
 pub struct Engine {
   mut board : Board
   mut closed : Bool
 } derive(@debug.Debug)
 pub fn Engine::command(Self, String) -> String raise ChessError
+pub fn Engine::fen(Self) -> String
 pub fn Engine::new() -> Self
 
 pub(all) struct Move {
@@ -39,6 +41,14 @@ pub(all) struct Move {
   to : Int
 } derive(Eq, @debug.Debug)
 pub fn Move::coordinate(Self) -> String
+
+pub(all) struct SearchResult {
+  best : Move?
+  score : Int
+  depth : Int
+  nodes : Int
+  stopped : Bool
+} derive(Eq, @debug.Debug)
 
 // Type aliases
 
