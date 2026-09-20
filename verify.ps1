@@ -32,6 +32,8 @@ try {
   if ($LASTEXITCODE -ne 0) {throw 'CLI test failed'}
   node tools/test-engine.mjs
   if ($LASTEXITCODE -ne 0) {throw 'engine process test failed'}
+  node tools/test-gameplay.mjs
+  if ($LASTEXITCODE -ne 0) {throw 'gameplay workflow failed'}
   node tools/test-perft.mjs
   if ($LASTEXITCODE -ne 0) {throw 'reference perft failed'}
   node tools/robustness.mjs

@@ -46,6 +46,10 @@ node tools/cli.mjs --file sample.txt --json
 
 公共 API 见编译器生成的 [pkg.generated.mbti](pkg.generated.mbti)，可执行示例见 [README.mbt.md](README.mbt.md)。
 
+## 常见流程验收
+
+两个真实引擎进程经 UCI/UCCI 各完成 24 半回合，并通过停止、新局和退出流程。JS/Wasm-GC 各 14 项、11 进程组、3 个公开 perft 向量和 CLI/异常输入通过。详见 [当前验收](TESTING.md)。这不是独立参考引擎对赛或专业棋力结论。按有限收尾要求结束本项目专项。
+
 ## 构建、验证与当前差距
 
 安装 MoonBit 后运行 `./verify.ps1`，或 `./verify.ps1 -MoonPath C:/path/to/moon/bin/moon.exe`。单独运行新进程检查：`node tools/test-engine.mjs`；独立公开 perft 向量：`node tools/test-perft.mjs`。细节及实际运行记录见 [TESTING.md](TESTING.md) 和 `evidence/`。
@@ -56,4 +60,4 @@ node tools/cli.mjs --file sample.txt --json
 
 参考 [Elephantfish](https://github.com/bupticybee/elephantfish) 的公开能力范围独立实现，未复制其搜索代码。UCI 命令参考 [Pikafish 官方说明](https://github.com/official-pikafish/Pikafish/wiki/UCI-&-Commands)，perft 数值来自 [Fairy-Stockfish 测试](https://github.com/fairy-stockfish/Fairy-Stockfish/blob/master/tests/perft.sh)。本仓库源码为 MIT；独立参考引擎不随仓库分发。
 
-本目录是唯一开发主仓库，独立 Git/构建目录，无 remote。所有改动仅本地，未上传、发布或提交比赛。旧批次目录、ZIP 和 Git bundle 是历史快照，本轮未重打包。[查重记录](DUPLICATION.md)保留其原验证范围。
+本目录是唯一开发主仓库，独立 Git/构建目录，无 remote。所有改动仅本地，未上传、发布或提交比赛。旧批次目录、ZIP 和 Git bundle 是历史快照，最终统一交付将另附当前提交的包。[查重记录](DUPLICATION.md)保留其原验证范围。

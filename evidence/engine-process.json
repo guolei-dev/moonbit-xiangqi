@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-10T16:14:21.551Z",
+  "date": "2026-09-20T16:07:13.489Z",
   "node": "v24.11.0",
   "passed": 11,
   "cases": [
@@ -16,7 +16,7 @@
     "quit during search shuts down worker"
   ],
   "stopLatencyMs": [
-    14
+    12
   ],
   "transcript": [
     "id name MoonBit Xiangqi Local 0.3.0",
@@ -26,16 +26,16 @@
     "id author localreview",
     "uciok",
     "readyok",
-    "info depth 1 score cp 0 nodes 58 pv a3a4 time 24",
-    "info depth 1 score cp 0 nodes 256 pv a3a4 time 32",
+    "info depth 1 score cp 0 nodes 58 pv a3a4 time 28",
+    "info depth 1 score cp 0 nodes 128 pv a3a4 time 31",
     "bestmove a3a4",
-    "info depth 0 score cp 0 nodes 1 pv a9a8 time 0",
+    "info depth 0 score cp 0 nodes 1 pv a9a8 time 1",
     "bestmove a9a8",
     "info depth 0 score cp 0 nodes 0 pv a3a4 time 0",
     "bestmove a3a4",
     "info depth 1 score cp 0 nodes 58 pv a3a4 time 2",
-    "info depth 2 score cp 0 nodes 1113 pv a3a4 time 35",
-    "info depth 2 score cp 0 nodes 1280 pv a3a4 time 41",
+    "info depth 2 score cp 0 nodes 1113 pv a3a4 time 33",
+    "info depth 2 score cp 0 nodes 1344 pv a3a4 time 40",
     "bestmove a3a4",
     "info string error ERROR: Invalid(\"illegal move a0a9\")",
     "readyok",
