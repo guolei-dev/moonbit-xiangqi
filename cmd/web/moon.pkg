@@ -9,7 +9,14 @@ pkgtype(kind: "executable")
 options(
   link: {
     "js": {
-      "exports": [ "run", "position", "legal", "perft", "search_position" ],
+      "exports": [
+        "run",
+        "position",
+        "legal",
+        "perft",
+        "search_position",
+        "search_game",
+      ],
       "format": "esm",
     },
   },

@@ -145,9 +145,13 @@ pub fn Board::search(
   node_limit? : Int = 100000,
   should_stop? : () -> Bool = () => false,
   on_iteration? : (SearchResult) -> Unit = _ => (),
+  history? : Array[String] = [],
 ) -> SearchResult raise ChessError {
   if depth < 1 || depth > 64 || node_limit < 1 || node_limit > 1000000000 {
     raise Invalid("search depth 1..64 and nodes 1..1000000000 required")
+  }
+  if history.length() > 4096 {
+    raise Invalid("search history limit")
   }
   let moves = self.legal_moves()
   if moves.is_empty() {
@@ -172,6 +176,9 @@ pub fn Board::search(
     let mut best = result.best
     let mut score = -10000000
     state.path.clear()
+    for prior in history {
+      state.path.push(prior)
+    }
     state.path.push(key)
     try {
       if should_stop() {

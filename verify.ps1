@@ -1,4 +1,4 @@
-param([string]$MoonPath)
+param([string]$MoonPath, [switch]$WithNative)
 $ErrorActionPreference='Stop'
 if (-not $MoonPath) {
   $available=Get-Command moon -ErrorAction SilentlyContinue
@@ -36,6 +36,10 @@ try {
   if ($LASTEXITCODE -ne 0) {throw 'gameplay workflow failed'}
   node tools/test-perft.mjs
   if ($LASTEXITCODE -ne 0) {throw 'reference perft failed'}
+  if ($WithNative) {
+    node tools/test-native.mjs
+    if ($LASTEXITCODE -ne 0) {throw 'native reference failed'}
+  }
   node tools/robustness.mjs
   if ($LASTEXITCODE -ne 0) {throw 'robustness failed'}
   node tools/benchmark.mjs

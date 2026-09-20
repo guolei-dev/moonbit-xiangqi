@@ -110,6 +110,37 @@ pub fn search_position(
 }
 
 ///|
+pub fn search_game(
+  command : String,
+  depth : Int,
+  nodes : Int,
+  should_stop : () -> Bool,
+  on_info : (String) -> Unit,
+) -> String {
+  try {
+    let engine = @lib.Engine::new()
+    ignore(engine.command(command))
+    let status = engine.status()
+    if status != "ongoing" {
+      on_info("info string result " + status)
+    }
+    let result = engine.search(depth, node_limit=nodes, should_stop~, on_iteration=r => {
+      on_info(info(r))
+    })
+    if result.stopped || result.depth == 0 {
+      on_info(info(result))
+    }
+    "bestmove " +
+    (match result.best {
+      Some(m) => m.coordinate()
+      None => "0000"
+    })
+  } catch {
+    e => "ERROR: " + Repr(e).to_string()
+  }
+}
+
+///|
 fn main {
 
 }

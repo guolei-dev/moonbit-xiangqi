@@ -1,0 +1,20 @@
+Finished. moon: ran 2 tasks, now up to date
+Finished. moon: ran 3 tasks, now up to date
+Finished. moon: ran 4 tasks, now up to date
+Total tests: 18, passed: 18, failed: 0.
+Total tests: 18, passed: 18, failed: 0.
+Finished. moon: ran 5 tasks, now up to date
+FEN: rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR w
+Legal moves: 44
+a3a4 c3c4 e3e4 g3g4 i3i4 b2a2 b2c2 b2d2 b2e2 b2f2 b2g2 b2b9 b2b6 b2b5 b2b4 b2b3 b2b1 h2c2 h2d2 h2e2 h2f2 h2g2 h2i2 h2h9 h2h6 h2h5 h2h4 h2h3 h2h1 a0a2 a0a1 b0c2 b0a2 c0e2 c0a2 d0e1 e0e1 f0e1 g0i2 g0e2 h0i2 h0g2 i0i2 i0i1
+Best (depth 2): a3a4
+xiangqi: independent browser engine passed
+xiangqi: CLI input/file/stdin/error/exit-status checks passed
+{"passed":11,"stopLatencyMs":[13]}
+Gameplay: 2 process sessions, 40 plies, 1 adjudications; new game and stop passed
+{"fen":"rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR w","depth":4,"expected":3290240,"actual":3290240,"milliseconds":1782}
+{"fen":"1rbaka2R/5r3/6n2/2p1p1p2/4P1bP1/PpC3Bc1/1nPR2P2/2N2AN2/1c2K1p2/2BAC4 w","depth":4,"expected":4485547,"actual":4485547,"milliseconds":3090}
+{"fen":"4kcP1N/8n/3rb4/9/9/9/9/3p1A3/4K4/5CB2 w","depth":4,"expected":92741,"actual":92741,"milliseconds":68}
+{"positions":180,"perftDepth2":20,"games":2,"plies":48,"adjudication":3}
+xiangqi: 307 bounded inputs, no uncaught runtime failure
+{"project":"xiangqi","utc":"2026-09-20T17:35:21.098Z","runtime":"v24.11.0","platform":"win32","cpu":"Intel(R) Core(TM) i7-14700HX","input_utf8_bytes":61,"samples":30,"warmup":5,"median_ms":28.742700000000013,"p95_ms":33.88340000000005,"max_ms":36.199499999999944,"scope":"JS warm execution of documented example; no cross-project or upstream performance claim"}

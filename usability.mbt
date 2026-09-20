@@ -1,18 +1,18 @@
 ///|
 /// Synchronous, transport-independent UCCI command session.
 pub struct Engine {
-  mut board : Board
+  mut game : Game
   mut closed : Bool
 } derive(Debug)
 
 ///|
 pub fn Engine::new() -> Engine {
-  { board: initial(), closed: false, }
+  { game: Game::new(initial()), closed: false, }
 }
 
 ///|
 pub fn Engine::fen(self : Engine) -> String {
-  self.board.fen()
+  self.game.board().fen()
 }
 
 ///|
@@ -33,7 +33,7 @@ pub fn Engine::command(self : Engine, line : String) -> String raise ChessError 
     "ucci" => "id name MoonBit Xiangqi Local\nucciok"
     "isready" => "readyok"
     "ucinewgame" => {
-      self.board = initial()
+      self.game = Game::new(initial())
       ""
     }
     "quit" => {
@@ -52,7 +52,7 @@ pub fn Engine::command(self : Engine, line : String) -> String raise ChessError 
           break
         }
       }
-      let mut board = if args[1] == "startpos" {
+      let board = if args[1] == "startpos" {
         if end != 2 {
           raise Invalid("startpos arguments")
         }
@@ -62,12 +62,13 @@ pub fn Engine::command(self : Engine, line : String) -> String raise ChessError 
       } else {
         raise Invalid("position type")
       }
+      let game = Game::new(board)
       if end < args.length() {
         for i in (end + 1)..<args.length() {
-          board = board.play(args[i])
+          game.play(args[i])
         }
       }
-      self.board = board
+      self.game = game
       ""
     }
     "go" => {
@@ -84,12 +85,35 @@ pub fn Engine::command(self : Engine, line : String) -> String raise ChessError 
         }
         depth = depth * 10 + c.to_int() - 48
       }
+      let result = self.game.search(depth, node_limit=50000)
+      if result.stopped {
+        raise Invalid("search node budget")
+      }
       "bestmove " +
-      (match self.board.best_move(depth) {
+      (match result.best {
         Some(m) => m.coordinate()
         None => "0000"
       })
     }
     _ => raise Invalid("unsupported UCCI command")
   }
+}
+
+///|
+pub fn Engine::status(self : Engine) -> String {
+  self.game.status()
+}
+
+///|
+pub fn Engine::search(
+  self : Engine,
+  depth : Int,
+  node_limit? : Int = 100000,
+  should_stop? : () -> Bool = () => false,
+  on_iteration? : (SearchResult) -> Unit = _ => (),
+) -> SearchResult raise ChessError {
+  if self.closed {
+    raise Invalid("engine closed")
+  }
+  self.game.search(depth, node_limit~, should_stop~, on_iteration~)
 }

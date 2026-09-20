@@ -1,6 +1,6 @@
 # 中国象棋规则与本地引擎
 
-MoonBit 本地候选版 0.3.0。规则、FEN、合法走法与搜索由 MoonBit 实现；Node.js 提供持续运行的引擎进程、工作线程、时钟和标准输入输出。
+MoonBit 本地候选版 0.4.0。规则、FEN、合法走法与搜索由 MoonBit 实现；Node.js 提供持续运行的引擎进程、工作线程、时钟和标准输入输出。
 
 ## 直接运行
 
@@ -42,19 +42,19 @@ node tools/cli.mjs --file sample.txt --json
 - `should_stop` 回调在每轮开始及每 64 个节点检查；`on_iteration` 只报告完整轮次。节点预算 1–1,000,000,000。计数包括静态搜索节点，不包括根节点或备用走法生成。
 - `Board::best_move` 保留原来的耗尽预算报错行为；需要平稳中止时用 `search`。同步 `Engine::command` 保留为无传输的基础会话 API。
 
-搜索路径中遇到重复局面暂按 0 分处理以避免循环；**这不是长将、长捉或正式重复局面的裁决**。走法排序缓存不缓存分数，避免把依赖搜索路径的重复分数当作固定局面值。FEN 后续计数未进入棋局历史，尚不提供完整合法局面校验。
+新增棋局历史、三次重复及单方连续长将的基础处理；终局返回原因和 bestmove 0000。具体政策、API 和局限见 [GAME-HISTORY.md](GAME-HISTORY.md)。长捉及正式赛事例外仍未实现；搜索树的重复置零仍为启发式。
 
 公共 API 见编译器生成的 [pkg.generated.mbti](pkg.generated.mbti)，可执行示例见 [README.mbt.md](README.mbt.md)。
 
 ## 常见流程验收
 
-两个真实引擎进程经 UCI/UCCI 各完成 24 半回合，并通过停止、新局和退出流程。JS/Wasm-GC 各 14 项、11 进程组、3 个公开 perft 向量和 CLI/异常输入通过。详见 [当前验收](TESTING.md)。这不是独立参考引擎对赛或专业棋力结论。按有限收尾要求结束本项目专项。
+本轮 JS/Wasm-GC 各 18 组、11 组进程检查、3 个公开 perft 向量及 CLI/异常输入通过。官方 Fairy-Stockfish 实时对照 180 次局面检查、两段共 48 半回合互通及三个基础重复/长将结果通过。独立棋力未证明，详情见 [GAME-HISTORY.md](GAME-HISTORY.md)。
 
 ## 构建、验证与当前差距
 
 安装 MoonBit 后运行 `./verify.ps1`，或 `./verify.ps1 -MoonPath C:/path/to/moon/bin/moon.exe`。单独运行新进程检查：`node tools/test-engine.mjs`；独立公开 perft 向量：`node tools/test-perft.mjs`。细节及实际运行记录见 [TESTING.md](TESTING.md) 和 `evidence/`。
 
-仍缺正式重复/长将/长捉裁决、棋局历史、开局库、完整协议选项、专业评估与棋力比赛、真实 GUI 长期对弈和跨平台时间精度证据。具体边界见 [FEATURES.md](FEATURES.md)，不能由测试通过推断已追平上游。
+仍缺完整赛事重复/长捉裁决、开局库、完整协议选项、专业评估与棋力比赛、真实 GUI 长期对弈和跨平台时间精度证据。具体边界见 [FEATURES.md](FEATURES.md)，不能由测试通过推断已追平上游。
 
 ## 来源与本地仓库
 

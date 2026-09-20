@@ -191,8 +191,11 @@ function _M0TP211localreview7xiangqi5Board(param0, param1) {
   this.cells = param0;
   this.red = param1;
 }
+function _M0TP211localreview7xiangqi4Game(param0) {
+  this.positions = param0;
+}
 function _M0TP211localreview7xiangqi6Engine(param0, param1) {
-  this.board = param0;
+  this.game = param0;
   this.closed = param1;
 }
 function _M0TPB8MutLocalGsE(param0) {
@@ -202,6 +205,14 @@ function _M0TP211localreview7xiangqi4Move(param0, param1) {
   this.from = param0;
   this.to = param1;
 }
+function _M0DTPC16result6ResultGuRP211localreview7xiangqi10ChessErrorE3Err(param0) {
+  this._0 = param0;
+}
+_M0DTPC16result6ResultGuRP211localreview7xiangqi10ChessErrorE3Err.prototype.$tag = 0;
+function _M0DTPC16result6ResultGuRP211localreview7xiangqi10ChessErrorE2Ok(param0) {
+  this._0 = param0;
+}
+_M0DTPC16result6ResultGuRP211localreview7xiangqi10ChessErrorE2Ok.prototype.$tag = 1;
 function _M0DTPC16result6ResultGuRP211localreview7xiangqi13SearchStoppedE3Err(param0) {
   this._0 = param0;
 }
@@ -251,14 +262,9 @@ function _M0TPB9ArrayViewGUsRP211localreview7xiangqi4MoveEE(param0, param1, para
 function _M0TPB8MutLocalGRP211localreview7xiangqi12SearchResultE(param0) {
   this.val = param0;
 }
-function _M0DTPC16result6ResultGORP211localreview7xiangqi4MoveRP211localreview7xiangqi10ChessErrorE3Err(param0) {
-  this._0 = param0;
+function _M0TPB8MutLocalGbE(param0) {
+  this.val = param0;
 }
-_M0DTPC16result6ResultGORP211localreview7xiangqi4MoveRP211localreview7xiangqi10ChessErrorE3Err.prototype.$tag = 0;
-function _M0DTPC16result6ResultGORP211localreview7xiangqi4MoveRP211localreview7xiangqi10ChessErrorE2Ok(param0) {
-  this._0 = param0;
-}
-_M0DTPC16result6ResultGORP211localreview7xiangqi4MoveRP211localreview7xiangqi10ChessErrorE2Ok.prototype.$tag = 1;
 function _M0DTPC16result6ResultGsRP211localreview7xiangqi10ChessErrorE3Err(param0) {
   this._0 = param0;
 }
@@ -267,9 +273,21 @@ function _M0DTPC16result6ResultGsRP211localreview7xiangqi10ChessErrorE2Ok(param0
   this._0 = param0;
 }
 _M0DTPC16result6ResultGsRP211localreview7xiangqi10ChessErrorE2Ok.prototype.$tag = 1;
-function _M0TPB8MutLocalGRP211localreview7xiangqi5BoardE(param0) {
-  this.val = param0;
+function _M0DTPC16result6ResultGORP211localreview7xiangqi4MoveRP211localreview7xiangqi10ChessErrorE3Err(param0) {
+  this._0 = param0;
 }
+_M0DTPC16result6ResultGORP211localreview7xiangqi4MoveRP211localreview7xiangqi10ChessErrorE3Err.prototype.$tag = 0;
+function _M0DTPC16result6ResultGORP211localreview7xiangqi4MoveRP211localreview7xiangqi10ChessErrorE2Ok(param0) {
+  this._0 = param0;
+}
+_M0DTPC16result6ResultGORP211localreview7xiangqi4MoveRP211localreview7xiangqi10ChessErrorE2Ok.prototype.$tag = 1;
+function _M0DTPC16option6OptionGRPB5ArrayGsEE4None() {}
+_M0DTPC16option6OptionGRPB5ArrayGsEE4None.prototype.$tag = 0;
+const _M0DTPC16option6OptionGRPB5ArrayGsEE4None__ = new _M0DTPC16option6OptionGRPB5ArrayGsEE4None();
+function _M0DTPC16option6OptionGRPB5ArrayGsEE4Some(param0) {
+  this._0 = param0;
+}
+_M0DTPC16option6OptionGRPB5ArrayGsEE4Some.prototype.$tag = 1;
 function _M0DTPC16result6ResultGiRP211localreview7xiangqi10ChessErrorE3Err(param0) {
   this._0 = param0;
 }
@@ -1119,6 +1137,9 @@ function _M0MPC16string6String11has__suffix(self, str) {
 function _M0MPC16string10StringView11has__prefix(self, str) {
   const str_len = str.end - str.start | 0;
   return str_len <= (self.end - self.start | 0) ? (str_len === 0 || _M0IPC16uint166UInt16PB2Eq5equal(self.str.charCodeAt(self.start), str.str.charCodeAt(str.start)) ? _M0MPC16string6String20unsafe__range__equal(self.str, self.start, str.str, str.start, str_len) : false) : false;
+}
+function _M0MPC16string6String11has__prefix(self, str) {
+  return _M0MPC16string10StringView11has__prefix(new _M0TPC16string10StringView(self, 0, self.length), str);
 }
 function _M0MPC16string10StringView13strip__suffix(self, suffix) {
   const self_len = self.end - self.start | 0;
@@ -2434,6 +2455,23 @@ function _M0MPC15array5Array12view_2einnerGsE(self, start, end) {
     return _M0FPC15abort5abortGRP211localreview7xiangqi5BoardE("View index out of bounds");
   }
 }
+function _M0MPC15array9ArrayView3mapGRP211localreview7xiangqi5BoardsE(self, f) {
+  const arr = new Array(self.end - self.start | 0);
+  const _bind = self.end - self.start | 0;
+  let _tmp = 0;
+  while (true) {
+    const i = _tmp;
+    if (i < _bind) {
+      const x = self.buf[self.start + i | 0];
+      arr[i] = f(x);
+      _tmp = i + 1 | 0;
+      continue;
+    } else {
+      break;
+    }
+  }
+  return arr;
+}
 function _M0MPC15array5Array28unsafe__truncate__to__lengthGsE(self, new_len) {
   _M0MPB7JSArray11set__length(self, new_len);
 }
@@ -2840,6 +2878,28 @@ function _M0MPC15array12MutArrayView8sort__byGRP211localreview7xiangqi4MoveE(sel
 function _M0MPC15array5Array8sort__byGRP211localreview7xiangqi4MoveE(self, cmp) {
   const _bind = self.length;
   _M0MPC15array12MutArrayView8sort__byGRP211localreview7xiangqi4MoveE(new _M0TPB12MutArrayViewGRP211localreview7xiangqi4MoveE(self, 0, _bind), cmp);
+}
+function _M0IPC15array5ArrayPB2Eq5equalGiE(self, other) {
+  const self_len = self.length;
+  const other_len = other.length;
+  if (self_len === other_len) {
+    let _tmp = 0;
+    while (true) {
+      const i = _tmp;
+      if (i < self_len) {
+        if (self[i] === other[i]) {
+        } else {
+          return false;
+        }
+        _tmp = i + 1 | 0;
+        continue;
+      } else {
+        return true;
+      }
+    }
+  } else {
+    return false;
+  }
 }
 function _M0IPC15array5ArrayPB3Add3addGsE(self, other) {
   const len_self = self.length;
@@ -3883,18 +3943,21 @@ function _M0IPC15debug4ReprPB4Show6output(self, logger) {
 function _M0IPC16string6StringPC15debug5Debug8to__repr(self) {
   return _M0MPC15debug4Repr6string(self);
 }
-function _M0IP211localreview7xiangqi10ChessErrorPC15debug5Debug8to__repr(_x_157) {
-  let _arg_158;
+function _M0IP211localreview7xiangqi10ChessErrorPC15debug5Debug8to__repr(_x_193) {
+  let _arg_194;
   _L: {
-    const _Invalid = _x_157;
-    const _$42$arg_158 = _Invalid._0;
-    _arg_158 = _$42$arg_158;
+    const _Invalid = _x_193;
+    const _$42$arg_194 = _Invalid._0;
+    _arg_194 = _$42$arg_194;
     break _L;
   }
-  return _M0MPC15debug4Repr4ctor("Invalid", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_158) }]);
+  return _M0MPC15debug4Repr4ctor("Invalid", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_194) }]);
 }
-function _M0IP211localreview7xiangqi4MovePB2Eq5equal(_x_143, _x_144) {
-  return _x_143.from === _x_144.from && _x_143.to === _x_144.to;
+function _M0IP211localreview7xiangqi5BoardPB2Eq5equal(_x_185, _x_186) {
+  return _M0IPC15array5ArrayPB2Eq5equalGiE(_x_185.cells, _x_186.cells) && _x_185.red === _x_186.red;
+}
+function _M0IP211localreview7xiangqi4MovePB2Eq5equal(_x_179, _x_180) {
+  return _x_179.from === _x_180.from && _x_179.to === _x_180.to;
 }
 function _M0FP211localreview7xiangqi10parse__fen(fen) {
   const _bind = " ";
@@ -4102,8 +4165,11 @@ function _M0FP211localreview7xiangqi7initial() {
   }
   return _M0FPC15abort5abortGRP211localreview7xiangqi5BoardE("internal FEN");
 }
+function _M0MP211localreview7xiangqi4Game3new(board) {
+  return new _M0TP211localreview7xiangqi4Game([board]);
+}
 function _M0MP211localreview7xiangqi6Engine3new() {
-  return new _M0TP211localreview7xiangqi6Engine(_M0FP211localreview7xiangqi7initial(), false);
+  return new _M0TP211localreview7xiangqi6Engine(_M0MP211localreview7xiangqi4Game3new(_M0FP211localreview7xiangqi7initial()), false);
 }
 function _M0MP211localreview7xiangqi5Board3fen(self) {
   const rows = [];
@@ -4209,11 +4275,11 @@ function _M0MP211localreview7xiangqi5Board3fen(self) {
   const _bind$3 = "/";
   return `${_M0MPC15array5Array4joinGsE(rows, new _M0TPC16string10StringView(_bind$3, 0, _bind$3.length))}${self.red ? " w" : " b"}`;
 }
-function _M0MP211localreview7xiangqi6Engine3fen(self) {
-  return _M0MP211localreview7xiangqi5Board3fen(self.board);
+function _M0MP211localreview7xiangqi4Game5board(self) {
+  return _M0MPC15array5Array2atGsE(self.positions, self.positions.length - 1 | 0);
 }
-function _M0FP211localreview7xiangqi3abs(n) {
-  return n < 0 ? -n | 0 : n;
+function _M0MP211localreview7xiangqi6Engine3fen(self) {
+  return _M0MP211localreview7xiangqi5Board3fen(_M0MP211localreview7xiangqi4Game5board(self.game));
 }
 function _M0MP211localreview7xiangqi5Board5apply(self, m) {
   const cells = _M0MPC15array5Array4copyGiE(self.cells);
@@ -4221,86 +4287,8 @@ function _M0MP211localreview7xiangqi5Board5apply(self, m) {
   _M0MPC15array5Array3setGiE(cells, m.from, 0);
   return new _M0TP211localreview7xiangqi5Board(cells, !self.red);
 }
-function _M0MP211localreview7xiangqi5Board8evaluate(self) {
-  const score = new _M0TPB8MutLocalGiE(0);
-  const _bind = self.cells;
-  const _bind$2 = _bind.length;
-  let _tmp = 0;
-  while (true) {
-    const i = _tmp;
-    if (i < _bind$2) {
-      const p = _bind[i];
-      const _bind$3 = _M0FP211localreview7xiangqi3abs(p);
-      let v;
-      switch (_bind$3) {
-        case 1: {
-          v = 100000;
-          break;
-        }
-        case 2: {
-          v = 120;
-          break;
-        }
-        case 3: {
-          v = 120;
-          break;
-        }
-        case 4: {
-          v = 270;
-          break;
-        }
-        case 5: {
-          v = 600;
-          break;
-        }
-        case 6: {
-          v = 300;
-          break;
-        }
-        case 7: {
-          let _tmp$2;
-          let _tmp$3;
-          if (p > 0) {
-            if (9 === 0) {
-              $panic();
-            }
-            _tmp$3 = (i / 9 | 0) < 5;
-          } else {
-            _tmp$3 = false;
-          }
-          if (_tmp$3) {
-            _tmp$2 = true;
-          } else {
-            let _tmp$4;
-            if (p < 0) {
-              if (9 === 0) {
-                $panic();
-              }
-              _tmp$4 = (i / 9 | 0) > 4;
-            } else {
-              _tmp$4 = false;
-            }
-            _tmp$2 = _tmp$4;
-          }
-          if (_tmp$2) {
-            v = 100;
-          } else {
-            v = 60;
-          }
-          break;
-        }
-        default: {
-          v = 0;
-        }
-      }
-      score.val = score.val + (p > 0 ? v : -v | 0) | 0;
-      _tmp = i + 1 | 0;
-      continue;
-    } else {
-      break;
-    }
-  }
-  return self.red ? score.val : -score.val | 0;
+function _M0FP211localreview7xiangqi3abs(n) {
+  return n < 0 ? -n | 0 : n;
 }
 function _M0FP211localreview7xiangqi6palace(x, y, red) {
   return x >= 3 && (x <= 5 && (red ? y >= 7 && y <= 9 : y >= 0 && y <= 2));
@@ -4585,6 +4573,139 @@ function _M0MP211localreview7xiangqi5Board12legal__moves(self) {
   }
   return out;
 }
+function _M0MP211localreview7xiangqi4Move10coordinate(self) {
+  const files = _M0MPC16string6String9to__array("abcdefghi");
+  if (9 === 0) {
+    $panic();
+  }
+  const _tmp = _M0IPC14char4CharPB4Show10to__string(_M0MPC15array5Array2atGcE(files, self.from % 9 | 0));
+  if (9 === 0) {
+    $panic();
+  }
+  const _tmp$2 = _M0MPC13int3Int18to__string_2einner(9 - (self.from / 9 | 0) | 0, 10);
+  if (9 === 0) {
+    $panic();
+  }
+  const _tmp$3 = _M0IPC14char4CharPB4Show10to__string(_M0MPC15array5Array2atGcE(files, self.to % 9 | 0));
+  if (9 === 0) {
+    $panic();
+  }
+  return `${_tmp}${_tmp$2}${_tmp$3}${_M0MPC13int3Int18to__string_2einner(9 - (self.to / 9 | 0) | 0, 10)}`;
+}
+function _M0MP211localreview7xiangqi5Board4play(self, coordinate) {
+  const _bind = _M0MP211localreview7xiangqi5Board12legal__moves(self);
+  const _bind$2 = _bind.length;
+  let _tmp = 0;
+  while (true) {
+    const _ = _tmp;
+    if (_ < _bind$2) {
+      const m = _bind[_];
+      if (_M0MP211localreview7xiangqi4Move10coordinate(m) === coordinate) {
+        return new _M0DTPC16result6ResultGRP211localreview7xiangqi5BoardRP211localreview7xiangqi10ChessErrorE2Ok(_M0MP211localreview7xiangqi5Board5apply(self, m));
+      }
+      _tmp = _ + 1 | 0;
+      continue;
+    } else {
+      break;
+    }
+  }
+  return new _M0DTPC16result6ResultGRP211localreview7xiangqi5BoardRP211localreview7xiangqi10ChessErrorE3Err(new _M0DTPC15error5Error44localreview_2fxiangqi_2eChessError_2eInvalid(`illegal move ${coordinate}`));
+}
+function _M0MP211localreview7xiangqi4Game4play(self, coordinate) {
+  if (self.positions.length >= 4097) {
+    return new _M0DTPC16result6ResultGuRP211localreview7xiangqi10ChessErrorE3Err(new _M0DTPC15error5Error44localreview_2fxiangqi_2eChessError_2eInvalid("game history limit 4096 plies"));
+  }
+  const _bind = _M0MP211localreview7xiangqi5Board4play(_M0MP211localreview7xiangqi4Game5board(self), coordinate);
+  let next;
+  if (_bind.$tag === 1) {
+    const _ok = _bind;
+    next = _ok._0;
+  } else {
+    return _bind;
+  }
+  return new _M0DTPC16result6ResultGuRP211localreview7xiangqi10ChessErrorE2Ok(_M0MPC15array5Array4pushGsE(self.positions, next));
+}
+function _M0MP211localreview7xiangqi5Board8evaluate(self) {
+  const score = new _M0TPB8MutLocalGiE(0);
+  const _bind = self.cells;
+  const _bind$2 = _bind.length;
+  let _tmp = 0;
+  while (true) {
+    const i = _tmp;
+    if (i < _bind$2) {
+      const p = _bind[i];
+      const _bind$3 = _M0FP211localreview7xiangqi3abs(p);
+      let v;
+      switch (_bind$3) {
+        case 1: {
+          v = 100000;
+          break;
+        }
+        case 2: {
+          v = 120;
+          break;
+        }
+        case 3: {
+          v = 120;
+          break;
+        }
+        case 4: {
+          v = 270;
+          break;
+        }
+        case 5: {
+          v = 600;
+          break;
+        }
+        case 6: {
+          v = 300;
+          break;
+        }
+        case 7: {
+          let _tmp$2;
+          let _tmp$3;
+          if (p > 0) {
+            if (9 === 0) {
+              $panic();
+            }
+            _tmp$3 = (i / 9 | 0) < 5;
+          } else {
+            _tmp$3 = false;
+          }
+          if (_tmp$3) {
+            _tmp$2 = true;
+          } else {
+            let _tmp$4;
+            if (p < 0) {
+              if (9 === 0) {
+                $panic();
+              }
+              _tmp$4 = (i / 9 | 0) > 4;
+            } else {
+              _tmp$4 = false;
+            }
+            _tmp$2 = _tmp$4;
+          }
+          if (_tmp$2) {
+            v = 100;
+          } else {
+            v = 60;
+          }
+          break;
+        }
+        default: {
+          v = 0;
+        }
+      }
+      score.val = score.val + (p > 0 ? v : -v | 0) | 0;
+      _tmp = i + 1 | 0;
+      continue;
+    } else {
+      break;
+    }
+  }
+  return self.red ? score.val : -score.val | 0;
+}
 function _M0FP211localreview7xiangqi12piece__value(p) {
   const _bind = _M0FP211localreview7xiangqi3abs(p);
   switch (_bind) {
@@ -4737,9 +4858,12 @@ function _M0MP211localreview7xiangqi11SearchState5visit(self, b, depth, qleft, p
   }
   return new _M0DTPC16result6ResultGiRP211localreview7xiangqi13SearchStoppedE2Ok(bound.val);
 }
-function _M0MP211localreview7xiangqi5Board14search_2einner(self, depth, node_limit, should_stop, on_iteration) {
+function _M0MP211localreview7xiangqi5Board14search_2einner(self, depth, node_limit, should_stop, on_iteration, history) {
   if (depth < 1 || (depth > 64 || (node_limit < 1 || node_limit > 1000000000))) {
     return new _M0DTPC16result6ResultGRP211localreview7xiangqi12SearchResultRP211localreview7xiangqi10ChessErrorE3Err(new _M0DTPC15error5Error44localreview_2fxiangqi_2eChessError_2eInvalid("search depth 1..64 and nodes 1..1000000000 required"));
+  }
+  if (history.length > 4096) {
+    return new _M0DTPC16result6ResultGRP211localreview7xiangqi12SearchResultRP211localreview7xiangqi10ChessErrorE3Err(new _M0DTPC15error5Error44localreview_2fxiangqi_2eChessError_2eInvalid("search history limit"));
   }
   const moves = _M0MP211localreview7xiangqi5Board12legal__moves(self);
   if (_M0MPC15array5Array9is__emptyGsE(moves)) {
@@ -4758,6 +4882,19 @@ function _M0MP211localreview7xiangqi5Board14search_2einner(self, depth, node_lim
       const best = new _M0TPB8MutLocalGORP211localreview7xiangqi4MoveE(result.val.best);
       const score = new _M0TPB8MutLocalGiE(-10000000);
       _M0MPC15array5Array5clearGsE(state.path);
+      const _bind$3 = history.length;
+      let _tmp$3 = 0;
+      while (true) {
+        const _ = _tmp$3;
+        if (_ < _bind$3) {
+          const prior = history[_];
+          _M0MPC15array5Array4pushGsE(state.path, prior);
+          _tmp$3 = _ + 1 | 0;
+          continue;
+        } else {
+          break;
+        }
+      }
       _M0MPC15array5Array4pushGsE(state.path, key);
       let _try_err;
       _L: {
@@ -4766,29 +4903,29 @@ function _M0MP211localreview7xiangqi5Board14search_2einner(self, depth, node_lim
             _try_err = _M0DTPC15error5Error51localreview_2fxiangqi_2eSearchStopped_2eInterrupted__;
             break _L$2;
           }
-          const _bind$3 = _M0MP211localreview7xiangqi5Board7ordered(self, result.val.best);
-          const _bind$4 = _bind$3.length;
-          let _tmp$3 = 0;
+          const _bind$4 = _M0MP211localreview7xiangqi5Board7ordered(self, result.val.best);
+          const _bind$5 = _bind$4.length;
+          let _tmp$4 = 0;
           while (true) {
-            const _ = _tmp$3;
-            if (_ < _bind$4) {
-              const m = _bind$3[_];
-              const _bind$5 = _M0MP211localreview7xiangqi11SearchState5visit(state, _M0MP211localreview7xiangqi5Board5apply(self, m), level - 1 | 0, 8, 1, -10000000, -score.val | 0);
-              let _tmp$4;
-              if (_bind$5.$tag === 1) {
-                const _ok = _bind$5;
-                _tmp$4 = _ok._0;
+            const _ = _tmp$4;
+            if (_ < _bind$5) {
+              const m = _bind$4[_];
+              const _bind$6 = _M0MP211localreview7xiangqi11SearchState5visit(state, _M0MP211localreview7xiangqi5Board5apply(self, m), level - 1 | 0, 8, 1, -10000000, -score.val | 0);
+              let _tmp$5;
+              if (_bind$6.$tag === 1) {
+                const _ok = _bind$6;
+                _tmp$5 = _ok._0;
               } else {
-                const _err = _bind$5;
+                const _err = _bind$6;
                 _try_err = _err._0;
                 break _L$2;
               }
-              const value = -_tmp$4 | 0;
+              const value = -_tmp$5 | 0;
               if (value > score.val) {
                 score.val = value;
                 best.val = m;
               }
-              _tmp$3 = _ + 1 | 0;
+              _tmp$4 = _ + 1 | 0;
               continue;
             } else {
               break;
@@ -4796,8 +4933,8 @@ function _M0MP211localreview7xiangqi5Board14search_2einner(self, depth, node_lim
           }
           break _L;
         }
-        const _bind$3 = result.val;
-        return new _M0DTPC16result6ResultGRP211localreview7xiangqi12SearchResultRP211localreview7xiangqi10ChessErrorE2Ok(new _M0TP211localreview7xiangqi12SearchResult(_bind$3.best, _bind$3.score, _bind$3.depth, state.nodes, true));
+        const _bind$4 = result.val;
+        return new _M0DTPC16result6ResultGRP211localreview7xiangqi12SearchResultRP211localreview7xiangqi10ChessErrorE2Ok(new _M0TP211localreview7xiangqi12SearchResult(_bind$4.best, _bind$4.score, _bind$4.depth, state.nodes, true));
       }
       result.val = new _M0TP211localreview7xiangqi12SearchResult(best.val, score.val, level, state.nodes, false);
       on_iteration(result.val);
@@ -4813,7 +4950,7 @@ function _M0MP211localreview7xiangqi5Board14search_2einner(self, depth, node_lim
   const _bind$3 = result.val;
   return new _M0DTPC16result6ResultGRP211localreview7xiangqi12SearchResultRP211localreview7xiangqi10ChessErrorE2Ok(new _M0TP211localreview7xiangqi12SearchResult(_bind$3.best, _bind$3.score, _bind$3.depth, state.nodes, _bind$3.stopped));
 }
-function _M0MP211localreview7xiangqi5Board6search(self, depth, node_limit$46$opt, should_stop$46$opt, on_iteration$46$opt) {
+function _M0MP211localreview7xiangqi5Board6search(self, depth, node_limit$46$opt, should_stop$46$opt, on_iteration$46$opt, history$46$opt) {
   let node_limit;
   if (node_limit$46$opt === undefined) {
     node_limit = 100000;
@@ -4836,62 +4973,116 @@ function _M0MP211localreview7xiangqi5Board6search(self, depth, node_limit$46$opt
     const _Some = on_iteration$46$opt;
     on_iteration = _Some;
   }
-  return _M0MP211localreview7xiangqi5Board14search_2einner(self, depth, node_limit, should_stop, on_iteration);
-}
-function _M0MP211localreview7xiangqi5Board18best__move_2einner(self, depth, node_limit) {
-  if (depth < 1 || (depth > 64 || (node_limit < 1 || node_limit > 1000000))) {
-    return new _M0DTPC16result6ResultGORP211localreview7xiangqi4MoveRP211localreview7xiangqi10ChessErrorE3Err(new _M0DTPC15error5Error44localreview_2fxiangqi_2eChessError_2eInvalid("search bounds"));
-  }
-  const _bind = _M0MP211localreview7xiangqi5Board6search(self, depth, node_limit, undefined, undefined);
-  let result;
-  if (_bind.$tag === 1) {
-    const _ok = _bind;
-    result = _ok._0;
+  let history;
+  if (history$46$opt.$tag === 1) {
+    const _Some = history$46$opt;
+    history = _Some._0;
   } else {
-    return _bind;
+    history = [];
   }
-  if (result.stopped) {
-    return new _M0DTPC16result6ResultGORP211localreview7xiangqi4MoveRP211localreview7xiangqi10ChessErrorE3Err(new _M0DTPC15error5Error44localreview_2fxiangqi_2eChessError_2eInvalid("search node budget"));
-  }
-  return new _M0DTPC16result6ResultGORP211localreview7xiangqi4MoveRP211localreview7xiangqi10ChessErrorE2Ok(result.best);
+  return _M0MP211localreview7xiangqi5Board14search_2einner(self, depth, node_limit, should_stop, on_iteration, history);
 }
-function _M0MP211localreview7xiangqi4Move10coordinate(self) {
-  const files = _M0MPC16string6String9to__array("abcdefghi");
-  if (9 === 0) {
-    $panic();
+function _M0MP211localreview7xiangqi4Game6status(self) {
+  const current = _M0MP211localreview7xiangqi4Game5board(self);
+  if (_M0MPC15array5Array9is__emptyGsE(_M0MP211localreview7xiangqi5Board12legal__moves(current))) {
+    return current.red ? "red-loses-no-moves" : "black-loses-no-moves";
   }
-  const _tmp = _M0IPC14char4CharPB4Show10to__string(_M0MPC15array5Array2atGcE(files, self.from % 9 | 0));
-  if (9 === 0) {
-    $panic();
-  }
-  const _tmp$2 = _M0MPC13int3Int18to__string_2einner(9 - (self.from / 9 | 0) | 0, 10);
-  if (9 === 0) {
-    $panic();
-  }
-  const _tmp$3 = _M0IPC14char4CharPB4Show10to__string(_M0MPC15array5Array2atGcE(files, self.to % 9 | 0));
-  if (9 === 0) {
-    $panic();
-  }
-  return `${_tmp}${_tmp$2}${_tmp$3}${_M0MPC13int3Int18to__string_2einner(9 - (self.to / 9 | 0) | 0, 10)}`;
-}
-function _M0MP211localreview7xiangqi5Board4play(self, coordinate) {
-  const _bind = _M0MP211localreview7xiangqi5Board12legal__moves(self);
+  const matches = [];
+  const _bind = self.positions;
   const _bind$2 = _bind.length;
   let _tmp = 0;
   while (true) {
-    const _ = _tmp;
-    if (_ < _bind$2) {
-      const m = _bind[_];
-      if (_M0MP211localreview7xiangqi4Move10coordinate(m) === coordinate) {
-        return new _M0DTPC16result6ResultGRP211localreview7xiangqi5BoardRP211localreview7xiangqi10ChessErrorE2Ok(_M0MP211localreview7xiangqi5Board5apply(self, m));
+    const i = _tmp;
+    if (i < _bind$2) {
+      const board = _bind[i];
+      if (_M0IP211localreview7xiangqi5BoardPB2Eq5equal(board, current)) {
+        _M0MPC15array5Array4pushGiE(matches, i);
       }
-      _tmp = _ + 1 | 0;
+      _tmp = i + 1 | 0;
       continue;
     } else {
       break;
     }
   }
-  return new _M0DTPC16result6ResultGRP211localreview7xiangqi5BoardRP211localreview7xiangqi10ChessErrorE3Err(new _M0DTPC15error5Error44localreview_2fxiangqi_2eChessError_2eInvalid(`illegal move ${coordinate}`));
+  if (matches.length < 3) {
+    return "ongoing";
+  }
+  const start = _M0MPC15array5Array2atGiE(matches, matches.length - 3 | 0);
+  const red_checks = new _M0TPB8MutLocalGbE(true);
+  const black_checks = new _M0TPB8MutLocalGbE(true);
+  const _bind$3 = start + 1 | 0;
+  const _bind$4 = self.positions.length;
+  let _tmp$2 = _bind$3;
+  while (true) {
+    const i = _tmp$2;
+    if (i < _bind$4) {
+      const after = _M0MPC15array5Array2atGsE(self.positions, i);
+      const checked = _M0MP211localreview7xiangqi5Board9in__check(after, after.red);
+      if (after.red) {
+        black_checks.val = black_checks.val && checked;
+      } else {
+        red_checks.val = red_checks.val && checked;
+      }
+      _tmp$2 = i + 1 | 0;
+      continue;
+    } else {
+      break;
+    }
+  }
+  return red_checks.val && !black_checks.val ? "red-loses-perpetual-check" : black_checks.val && !red_checks.val ? "black-loses-perpetual-check" : "draw-repetition";
+}
+function _M0MP211localreview7xiangqi4Game14search_2einner(self, depth, node_limit, should_stop, on_iteration) {
+  if (depth < 1 || (depth > 64 || (node_limit < 1 || node_limit > 1000000000))) {
+    return new _M0DTPC16result6ResultGRP211localreview7xiangqi12SearchResultRP211localreview7xiangqi10ChessErrorE3Err(new _M0DTPC15error5Error44localreview_2fxiangqi_2eChessError_2eInvalid("search depth 1..64 and nodes 1..1000000000 required"));
+  }
+  const status = _M0MP211localreview7xiangqi4Game6status(self);
+  if (_M0IP016_24default__implPB2Eq10not__equalGsE(status, "ongoing")) {
+    let score;
+    if (status === "draw-repetition") {
+      score = 0;
+    } else {
+      let _tmp;
+      if (_M0MP211localreview7xiangqi4Game5board(self).red) {
+        const _bind = "red-";
+        _tmp = new _M0TPC16string10StringView(_bind, 0, _bind.length);
+      } else {
+        const _bind = "black-";
+        _tmp = new _M0TPC16string10StringView(_bind, 0, _bind.length);
+      }
+      if (_M0MPC16string6String11has__prefix(status, _tmp)) {
+        score = -1000000;
+      } else {
+        score = 1000000;
+      }
+    }
+    return new _M0DTPC16result6ResultGRP211localreview7xiangqi12SearchResultRP211localreview7xiangqi10ChessErrorE2Ok(new _M0TP211localreview7xiangqi12SearchResult(undefined, score, 0, 0, false));
+  }
+  return _M0MP211localreview7xiangqi5Board14search_2einner(_M0MP211localreview7xiangqi4Game5board(self), depth, node_limit, should_stop, on_iteration, _M0MPC15array9ArrayView3mapGRP211localreview7xiangqi5BoardsE(_M0MPC15array5Array12view_2einnerGsE(self.positions, 0, self.positions.length - 1 | 0), (b) => _M0MP211localreview7xiangqi5Board3fen(b)));
+}
+function _M0MP211localreview7xiangqi4Game6search(self, depth, node_limit$46$opt, should_stop$46$opt, on_iteration$46$opt) {
+  let node_limit;
+  if (node_limit$46$opt === undefined) {
+    node_limit = 100000;
+  } else {
+    const _Some = node_limit$46$opt;
+    node_limit = _Some;
+  }
+  let should_stop;
+  if (should_stop$46$opt === undefined) {
+    should_stop = () => false;
+  } else {
+    const _Some = should_stop$46$opt;
+    should_stop = _Some;
+  }
+  let on_iteration;
+  if (on_iteration$46$opt === undefined) {
+    on_iteration = (_discard_) => {
+    };
+  } else {
+    const _Some = on_iteration$46$opt;
+    on_iteration = _Some;
+  }
+  return _M0MP211localreview7xiangqi4Game14search_2einner(self, depth, node_limit, should_stop, on_iteration);
 }
 function _M0MP211localreview7xiangqi6Engine7command(self, line) {
   if (self.closed) {
@@ -4912,7 +5103,7 @@ function _M0MP211localreview7xiangqi6Engine7command(self, line) {
       return new _M0DTPC16result6ResultGsRP211localreview7xiangqi10ChessErrorE2Ok("readyok");
     }
     case "ucinewgame": {
-      self.board = _M0FP211localreview7xiangqi7initial();
+      self.game = _M0MP211localreview7xiangqi4Game3new(_M0FP211localreview7xiangqi7initial());
       return new _M0DTPC16result6ResultGsRP211localreview7xiangqi10ChessErrorE2Ok("");
     }
     case "quit": {
@@ -4943,20 +5134,20 @@ function _M0MP211localreview7xiangqi6Engine7command(self, line) {
           break;
         }
       }
-      let _tmp$3;
+      let board;
       if (_M0MPC15array5Array2atGsE(args, 1) === "startpos") {
         if (end.val !== 2) {
           return new _M0DTPC16result6ResultGsRP211localreview7xiangqi10ChessErrorE3Err(new _M0DTPC15error5Error44localreview_2fxiangqi_2eChessError_2eInvalid("startpos arguments"));
         }
-        _tmp$3 = _M0FP211localreview7xiangqi7initial();
+        board = _M0FP211localreview7xiangqi7initial();
       } else {
         if (_M0MPC15array5Array2atGsE(args, 1) === "fen") {
-          const _tmp$4 = _M0MPC15array9ArrayView9to__ownedGsE(_M0MPC15array5Array12view_2einnerGsE(args, 2, end.val));
+          const _tmp$3 = _M0MPC15array9ArrayView9to__ownedGsE(_M0MPC15array5Array12view_2einnerGsE(args, 2, end.val));
           const _bind$5 = " ";
-          const _bind$6 = _M0FP211localreview7xiangqi10parse__fen(_M0MPC15array5Array4joinGsE(_tmp$4, new _M0TPC16string10StringView(_bind$5, 0, _bind$5.length)));
+          const _bind$6 = _M0FP211localreview7xiangqi10parse__fen(_M0MPC15array5Array4joinGsE(_tmp$3, new _M0TPC16string10StringView(_bind$5, 0, _bind$5.length)));
           if (_bind$6.$tag === 1) {
             const _ok = _bind$6;
-            _tmp$3 = _ok._0;
+            board = _ok._0;
           } else {
             return _bind$6;
           }
@@ -4964,31 +5155,29 @@ function _M0MP211localreview7xiangqi6Engine7command(self, line) {
           return new _M0DTPC16result6ResultGsRP211localreview7xiangqi10ChessErrorE3Err(new _M0DTPC15error5Error44localreview_2fxiangqi_2eChessError_2eInvalid("position type"));
         }
       }
-      const board = new _M0TPB8MutLocalGRP211localreview7xiangqi5BoardE(_tmp$3);
+      const game = _M0MP211localreview7xiangqi4Game3new(board);
       if (end.val < args.length) {
         const _bind$5 = end.val + 1 | 0;
         const _bind$6 = args.length;
-        let _tmp$4 = _bind$5;
+        let _tmp$3 = _bind$5;
         while (true) {
-          const i = _tmp$4;
+          const i = _tmp$3;
           if (i < _bind$6) {
-            const _bind$7 = _M0MP211localreview7xiangqi5Board4play(board.val, _M0MPC15array5Array2atGsE(args, i));
-            let _tmp$5;
+            const _bind$7 = _M0MP211localreview7xiangqi4Game4play(game, _M0MPC15array5Array2atGsE(args, i));
             if (_bind$7.$tag === 1) {
               const _ok = _bind$7;
-              _tmp$5 = _ok._0;
+              _ok._0;
             } else {
               return _bind$7;
             }
-            board.val = _tmp$5;
-            _tmp$4 = i + 1 | 0;
+            _tmp$3 = i + 1 | 0;
             continue;
           } else {
             break;
           }
         }
       }
-      self.board = board.val;
+      self.game = game;
       return new _M0DTPC16result6ResultGsRP211localreview7xiangqi10ChessErrorE2Ok("");
     }
     case "go": {
@@ -5001,9 +5190,9 @@ function _M0MP211localreview7xiangqi6Engine7command(self, line) {
       }
       const _bind$5 = _M0MPC15array5Array2atGsE(args, 2);
       const _bind$6 = _bind$5.length;
-      let _tmp$4 = 0;
+      let _tmp$3 = 0;
       while (true) {
-        const _string_index = _tmp$4;
+        const _string_index = _tmp$3;
         if (_string_index < _bind$6) {
           let _decoded_next_string_index;
           let _decoded_char;
@@ -5032,26 +5221,30 @@ function _M0MP211localreview7xiangqi6Engine7command(self, line) {
             return new _M0DTPC16result6ResultGsRP211localreview7xiangqi10ChessErrorE3Err(new _M0DTPC15error5Error44localreview_2fxiangqi_2eChessError_2eInvalid("depth range"));
           }
           depth.val = ((Math.imul(depth.val, 10) | 0) + c | 0) - 48 | 0;
-          _tmp$4 = _next_string_index;
+          _tmp$3 = _next_string_index;
           continue;
         } else {
           break;
         }
       }
-      let _tmp$5;
+      const _bind$7 = _M0MP211localreview7xiangqi4Game6search(self.game, depth.val, 50000, undefined, undefined);
+      let result;
+      if (_bind$7.$tag === 1) {
+        const _ok = _bind$7;
+        result = _ok._0;
+      } else {
+        return _bind$7;
+      }
+      if (result.stopped) {
+        return new _M0DTPC16result6ResultGsRP211localreview7xiangqi10ChessErrorE3Err(new _M0DTPC15error5Error44localreview_2fxiangqi_2eChessError_2eInvalid("search node budget"));
+      }
+      let _tmp$4;
       let m;
       _L: {
         _L$2: {
-          const _bind$7 = _M0MP211localreview7xiangqi5Board18best__move_2einner(self.board, depth.val, 50000);
-          let _bind$8;
-          if (_bind$7.$tag === 1) {
-            const _ok = _bind$7;
-            _bind$8 = _ok._0;
-          } else {
-            return _bind$7;
-          }
+          const _bind$8 = result.best;
           if (_bind$8 === undefined) {
-            _tmp$5 = "0000";
+            _tmp$4 = "0000";
           } else {
             const _Some = _bind$8;
             const _m = _Some;
@@ -5060,14 +5253,40 @@ function _M0MP211localreview7xiangqi6Engine7command(self, line) {
           }
           break _L;
         }
-        _tmp$5 = _M0MP211localreview7xiangqi4Move10coordinate(m);
+        _tmp$4 = _M0MP211localreview7xiangqi4Move10coordinate(m);
       }
-      return new _M0DTPC16result6ResultGsRP211localreview7xiangqi10ChessErrorE2Ok(`bestmove ${_tmp$5}`);
+      return new _M0DTPC16result6ResultGsRP211localreview7xiangqi10ChessErrorE2Ok(`bestmove ${_tmp$4}`);
     }
     default: {
       return new _M0DTPC16result6ResultGsRP211localreview7xiangqi10ChessErrorE3Err(new _M0DTPC15error5Error44localreview_2fxiangqi_2eChessError_2eInvalid("unsupported UCCI command"));
     }
   }
+}
+function _M0MP211localreview7xiangqi6Engine6status(self) {
+  return _M0MP211localreview7xiangqi4Game6status(self.game);
+}
+function _M0MP211localreview7xiangqi6Engine14search_2einner(self, depth, node_limit, should_stop, on_iteration) {
+  if (self.closed) {
+    return new _M0DTPC16result6ResultGRP211localreview7xiangqi12SearchResultRP211localreview7xiangqi10ChessErrorE3Err(new _M0DTPC15error5Error44localreview_2fxiangqi_2eChessError_2eInvalid("engine closed"));
+  }
+  return _M0MP211localreview7xiangqi4Game14search_2einner(self.game, depth, node_limit, should_stop, on_iteration);
+}
+function _M0MP211localreview7xiangqi5Board18best__move_2einner(self, depth, node_limit) {
+  if (depth < 1 || (depth > 64 || (node_limit < 1 || node_limit > 1000000))) {
+    return new _M0DTPC16result6ResultGORP211localreview7xiangqi4MoveRP211localreview7xiangqi10ChessErrorE3Err(new _M0DTPC15error5Error44localreview_2fxiangqi_2eChessError_2eInvalid("search bounds"));
+  }
+  const _bind = _M0MP211localreview7xiangqi5Board6search(self, depth, node_limit, undefined, undefined, _M0DTPC16option6OptionGRPB5ArrayGsEE4None__);
+  let result;
+  if (_bind.$tag === 1) {
+    const _ok = _bind;
+    result = _ok._0;
+  } else {
+    return _bind;
+  }
+  if (result.stopped) {
+    return new _M0DTPC16result6ResultGORP211localreview7xiangqi4MoveRP211localreview7xiangqi10ChessErrorE3Err(new _M0DTPC15error5Error44localreview_2fxiangqi_2eChessError_2eInvalid("search node budget"));
+  }
+  return new _M0DTPC16result6ResultGORP211localreview7xiangqi4MoveRP211localreview7xiangqi10ChessErrorE2Ok(result.best);
 }
 function _M0MP211localreview7xiangqi5Board5perft(self, depth) {
   if (depth < 0 || depth > 4) {
@@ -5310,9 +5529,9 @@ function _M0FP411localreview7xiangqi3cmd3web16search__position(fen, depth, nodes
       _try_err = _err._0;
       break _L;
     }
-    const _bind$2 = _M0MP211localreview7xiangqi5Board14search_2einner(_tmp, depth, nodes, should_stop, (r) => {
+    const _bind$2 = _M0MP211localreview7xiangqi5Board6search(_tmp, depth, nodes, should_stop, (r) => {
       on_info(_M0FP411localreview7xiangqi3cmd3web4info(r));
-    });
+    }, _M0DTPC16option6OptionGRPB5ArrayGsEE4None__);
     let result;
     if (_bind$2.$tag === 1) {
       const _ok = _bind$2;
@@ -5347,7 +5566,61 @@ function _M0FP411localreview7xiangqi3cmd3web16search__position(fen, depth, nodes
   const e = _try_err;
   return `ERROR: ${_M0IP016_24default__implPB4Show10to__stringGRPC15debug4ReprE(_M0MPC15debug4Repr4ReprGRP211localreview7xiangqi10ChessErrorE(e))}`;
 }
+function _M0FP411localreview7xiangqi3cmd3web12search__game(command, depth, nodes, should_stop, on_info) {
+  let _try_err;
+  _L: {
+    const engine = _M0MP211localreview7xiangqi6Engine3new();
+    const _bind = _M0MP211localreview7xiangqi6Engine7command(engine, command);
+    if (_bind.$tag === 1) {
+      const _ok = _bind;
+      _ok._0;
+    } else {
+      const _err = _bind;
+      _try_err = _err._0;
+      break _L;
+    }
+    const status = _M0MP211localreview7xiangqi6Engine6status(engine);
+    if (_M0IP016_24default__implPB2Eq10not__equalGsE(status, "ongoing")) {
+      on_info(`info string result ${status}`);
+    }
+    const _bind$2 = _M0MP211localreview7xiangqi6Engine14search_2einner(engine, depth, nodes, should_stop, (r) => {
+      on_info(_M0FP411localreview7xiangqi3cmd3web4info(r));
+    });
+    let result;
+    if (_bind$2.$tag === 1) {
+      const _ok = _bind$2;
+      result = _ok._0;
+    } else {
+      const _err = _bind$2;
+      _try_err = _err._0;
+      break _L;
+    }
+    if (result.stopped || result.depth === 0) {
+      on_info(_M0FP411localreview7xiangqi3cmd3web4info(result));
+    }
+    let _tmp;
+    let m;
+    _L$2: {
+      _L$3: {
+        const _bind$3 = result.best;
+        if (_bind$3 === undefined) {
+          _tmp = "0000";
+        } else {
+          const _Some = _bind$3;
+          const _m = _Some;
+          m = _m;
+          break _L$3;
+        }
+        break _L$2;
+      }
+      _tmp = _M0MP211localreview7xiangqi4Move10coordinate(m);
+    }
+    return `bestmove ${_tmp}`;
+  }
+  const e = _try_err;
+  return `ERROR: ${_M0IP016_24default__implPB4Show10to__stringGRPC15debug4ReprE(_M0MPC15debug4Repr4ReprGRP211localreview7xiangqi10ChessErrorE(e))}`;
+}
 (() => {
 })();
-export { _M0FP411localreview7xiangqi3cmd3web3run as run, _M0FP411localreview7xiangqi3cmd3web8position as position, _M0FP411localreview7xiangqi3cmd3web5legal as legal, _M0FP411localreview7xiangqi3cmd3web5perft as perft, _M0FP411localreview7xiangqi3cmd3web16search__position as search_position }
+export { _M0FP411localreview7xiangqi3cmd3web3run as run, _M0FP411localreview7xiangqi3cmd3web8position as position, _M0FP411localreview7xiangqi3cmd3web5legal as legal, _M0FP411localreview7xiangqi3cmd3web5perft as perft, _M0FP411localreview7xiangqi3cmd3web16search__position as search_position, _M0FP411localreview7xiangqi3cmd3web12search__game as search_game }
 //# sourceMappingURL=web.js.map

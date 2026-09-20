@@ -35,7 +35,7 @@ export function limits(line, red) {
 }
 
 export function serve() {
-  let fen = position('position startpos'), active = null, serial = 0, quitting = false;
+  let positionCommand = 'position startpos', fen = position(positionCommand), active = null, serial = 0, quitting = false;
   const write = line => { if (line && !quitting) process.stdout.write(line + '\n'); };
   const worker = new Worker(new URL('./engine-worker.mjs', import.meta.url));
   const input = createInterface({ input: process.stdin, crlfDelay: Infinity });
@@ -49,7 +49,7 @@ export function serve() {
     const job = active;
     if (!job || message.id !== job.id) return;
     if (message.kind === 'info') {
-      write(message.line + ` time ${Math.floor(performance.now() - job.start)}`);
+      write(message.line + (message.line.startsWith('info string ') ? '' : ` time ${Math.floor(performance.now() - job.start)}`));
       return;
     }
     let best = message.line;
@@ -79,7 +79,7 @@ export function serve() {
     if (quitting || !line) return;
     if (line.length > 65536) throw Error('command exceeds 65536 characters');
     if (line === 'uci' || line === 'ucci') {
-      write('id name MoonBit Xiangqi Local 0.3.0');
+      write('id name MoonBit Xiangqi Local 0.4.0');
       write('id author localreview');
       write(line + 'ok');
     } else if (line === 'isready') write('readyok');
@@ -89,6 +89,7 @@ export function serve() {
       const next = position(line === 'ucinewgame' ? 'position startpos' : line);
       if (next.startsWith('ERROR:')) throw Error(next);
       fen = next;
+      positionCommand = line === 'ucinewgame' ? 'position startpos' : line;
     } else if (line === 'go' || line.startsWith('go ')) {
       if (active) throw Error('search already running; send stop');
       const config = limits(line, fen.endsWith(' w'));
@@ -97,7 +98,7 @@ export function serve() {
         fallback: 'bestmove ' + (legal(fen).split(' ')[0] || '0000') };
       job.done = new Promise(resolve => { job.resolve = resolve; });
       active = job;
-      worker.postMessage({ id: job.id, fen, depth: config.depth, nodes: config.nodes, stopBuffer, deadline: job.start + config.ms });
+      worker.postMessage({ id: job.id, command: positionCommand, depth: config.depth, nodes: config.nodes, stopBuffer, deadline: job.start + config.ms });
     } else throw Error('unsupported command: ' + line.split(' ')[0]);
   }
   let queue = Promise.resolve();

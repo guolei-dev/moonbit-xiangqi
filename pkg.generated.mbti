@@ -26,15 +26,26 @@ pub fn Board::in_check(Self, Bool) -> Bool
 pub fn Board::legal_moves(Self) -> Array[Move]
 pub fn Board::perft(Self, Int) -> Int raise ChessError
 pub fn Board::play(Self, String) -> Self raise ChessError
-pub fn Board::search(Self, Int, node_limit? : Int, should_stop? : () -> Bool, on_iteration? : (SearchResult) -> Unit) -> SearchResult raise ChessError
+pub fn Board::search(Self, Int, node_limit? : Int, should_stop? : () -> Bool, on_iteration? : (SearchResult) -> Unit, history? : Array[String]) -> SearchResult raise ChessError
 
 pub struct Engine {
-  mut board : Board
+  mut game : Game
   mut closed : Bool
 } derive(@debug.Debug)
 pub fn Engine::command(Self, String) -> String raise ChessError
 pub fn Engine::fen(Self) -> String
 pub fn Engine::new() -> Self
+pub fn Engine::search(Self, Int, node_limit? : Int, should_stop? : () -> Bool, on_iteration? : (SearchResult) -> Unit) -> SearchResult raise ChessError
+pub fn Engine::status(Self) -> String
+
+pub struct Game {
+  positions : Array[Board]
+} derive(@debug.Debug)
+pub fn Game::board(Self) -> Board
+pub fn Game::new(Board) -> Self
+pub fn Game::play(Self, String) -> Unit raise ChessError
+pub fn Game::search(Self, Int, node_limit? : Int, should_stop? : () -> Bool, on_iteration? : (SearchResult) -> Unit) -> SearchResult raise ChessError
+pub fn Game::status(Self) -> String
 
 pub(all) struct Move {
   from : Int

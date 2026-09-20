@@ -1,3 +1,7 @@
+# 0.4 当前验证
+
+完整 verify.ps1 -WithNative 通过，双后端各 18 组，180 次独立规则检查（175 个不同局面）、20 个深度 2 检查、两段共 48 半回合独立互通、3 个原生 XBoard 结果对照。既有进程、CLI、深度 4 perft 和异常输入检查通过。见 GAME-HISTORY.md 和 evidence/history-final-tests.txt。下文为历史快照，其“未运行原生”不适用于本轮。
+
 ## 2026-09-21 常见流程验收
 
 完整本地 verify 通过：JS/Wasm-GC 各 14 项、11 组进程夹具、3 个公开 perft 向量、原有 CLI 和 307 个异常输入。新增独立协议控制器驱动两个真实持续进程，分别经 UCI/UCCI 握手完成 24 半回合，共 48 半回合，验证准备响应、换边、走子、停止、新局与退出；见 evidence/gameplay-validation.json。

@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-20T16:07:13.489Z",
+  "date": "2026-09-20T17:35:09.762Z",
   "node": "v24.11.0",
   "passed": 11,
   "cases": [
@@ -16,26 +16,26 @@
     "quit during search shuts down worker"
   ],
   "stopLatencyMs": [
-    12
+    13
   ],
   "transcript": [
-    "id name MoonBit Xiangqi Local 0.3.0",
+    "id name MoonBit Xiangqi Local 0.4.0",
     "id author localreview",
     "ucciok",
-    "id name MoonBit Xiangqi Local 0.3.0",
+    "id name MoonBit Xiangqi Local 0.4.0",
     "id author localreview",
     "uciok",
     "readyok",
-    "info depth 1 score cp 0 nodes 58 pv a3a4 time 28",
-    "info depth 1 score cp 0 nodes 128 pv a3a4 time 31",
+    "info depth 1 score cp 0 nodes 58 pv a3a4 time 19",
+    "info depth 1 score cp 0 nodes 192 pv a3a4 time 24",
     "bestmove a3a4",
-    "info depth 0 score cp 0 nodes 1 pv a9a8 time 1",
+    "info depth 0 score cp 0 nodes 1 pv a9a8 time 2",
     "bestmove a9a8",
     "info depth 0 score cp 0 nodes 0 pv a3a4 time 0",
     "bestmove a3a4",
-    "info depth 1 score cp 0 nodes 58 pv a3a4 time 2",
-    "info depth 2 score cp 0 nodes 1113 pv a3a4 time 33",
-    "info depth 2 score cp 0 nodes 1344 pv a3a4 time 40",
+    "info depth 1 score cp 0 nodes 58 pv a3a4 time 4",
+    "info depth 2 score cp 0 nodes 1113 pv a3a4 time 31",
+    "info depth 2 score cp 0 nodes 1536 pv a3a4 time 41",
     "bestmove a3a4",
     "info string error ERROR: Invalid(\"illegal move a0a9\")",
     "readyok",
@@ -44,13 +44,14 @@
     "info depth 1 score cp 900 nodes 6 pv a0a1 time 0",
     "info depth 2 score cp 833 nodes 23 pv a0a1 time 0",
     "info depth 3 score cp 833 nodes 107 pv a0a1 time 1",
-    "info depth 4 score cp 1000 nodes 340 pv a0a1 time 3",
+    "info depth 4 score cp 1000 nodes 340 pv a0a1 time 4",
     "bestmove a0a1",
     "readyok",
+    "info string result black-loses-no-moves",
     "info depth 0 score mate 0 nodes 0 time 0",
     "bestmove 0000",
     "readyok",
-    "info depth 1 score cp 0 nodes 58 pv a3a4 time 2"
+    "info depth 1 score cp 0 nodes 58 pv a3a4 time 4"
   ],
   "scope": "local process fixtures; not GUI or tournament compatibility"
 }
