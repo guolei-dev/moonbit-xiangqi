@@ -1,4 +1,4 @@
-name = "localreview/xiangqi"
+name = "guolei-dev/xiangqi"
 
 version = "0.4.0"
 

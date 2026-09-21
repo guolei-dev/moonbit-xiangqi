@@ -1,5 +1,5 @@
 import {
-  "localreview/xiangqi" @lib,
+  "guolei-dev/xiangqi" @lib,
 }
 
 pkgtype(kind: "executable")

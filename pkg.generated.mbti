@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "localreview/xiangqi"
+package "guolei-dev/xiangqi"
 
 import {
   "moonbitlang/core/debug",
