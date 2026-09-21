@@ -1,5 +1,13 @@
 # 中国象棋规则与本地引擎
 
+## 获取与验证入口
+
+公开源码：[github.com/guolei-dev/moonbit-xiangqi](https://github.com/guolei-dev/moonbit-xiangqi)；MoonBit 模块名为 `guolei-dev/xiangqi`。
+
+从源码运行：`git clone https://github.com/guolei-dev/moonbit-xiangqi.git` 后进入该目录，按下文和 [TESTING.md](TESTING.md) 安装所需工具。仓库公开不等于已在 Mooncakes 发布，不承诺 `moon add` 当前可用。
+
+查看 [GitHub Actions](https://github.com/guolei-dev/moonbit-xiangqi/actions) 时请核对 run 的 commit SHA；历史 evidence、旧 ZIP 与本地测试不能替代当前提交的 CI 结果。下文保留各版本的验证范围和兼容性限制。
+
 MoonBit 本地候选版 0.4.0。规则、FEN、合法走法与搜索由 MoonBit 实现；Node.js 提供持续运行的引擎进程、工作线程、时钟和标准输入输出。
 
 ## 直接运行
@@ -60,4 +68,4 @@ node tools/cli.mjs --file sample.txt --json
 
 参考 [Elephantfish](https://github.com/bupticybee/elephantfish) 的公开能力范围独立实现，未复制其搜索代码。UCI 命令参考 [Pikafish 官方说明](https://github.com/official-pikafish/Pikafish/wiki/UCI-&-Commands)，perft 数值来自 [Fairy-Stockfish 测试](https://github.com/fairy-stockfish/Fairy-Stockfish/blob/master/tests/perft.sh)。本仓库源码为 MIT；独立参考引擎不随仓库分发。
 
-本目录是唯一开发主仓库，独立 Git/构建目录，无 remote。所有改动仅本地，未上传、发布或提交比赛。旧批次目录、ZIP 和 Git bundle 是历史快照，最终统一交付将另附当前提交的包。[查重记录](DUPLICATION.md)保留其原验证范围。
+> 历史开发记录（以下发布/归档状态不代表当前仓库；当前入口见文首）：本目录是唯一开发主仓库，独立 Git/构建目录，无 remote。所有改动仅本地，未上传、发布或提交比赛。旧批次目录、ZIP 和 Git bundle 是历史快照，最终统一交付将另附当前提交的包。[查重记录](DUPLICATION.md)保留其原验证范围。
