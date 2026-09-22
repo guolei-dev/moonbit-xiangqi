@@ -1,0 +1,56 @@
+{
+  "date": "2026-09-22",
+  "project": "xiangqi",
+  "package": "guolei-dev/xiangqi",
+  "version": "0.4.0",
+  "code_base_commit_before_materials": "3dfc7a995062bd99a3861717dd432478c3188717",
+  "core_checks": [
+    {
+      "command": [
+        "moon",
+        "test",
+        "--target",
+        "js"
+      ],
+      "exit": 0,
+      "seconds": 2.56,
+      "log": "xiangqi-test---target-js.log"
+    },
+    {
+      "command": [
+        "moon",
+        "test",
+        "--target",
+        "wasm-gc"
+      ],
+      "exit": 0,
+      "seconds": 1.83,
+      "log": "xiangqi-test---target-wasm-gc.log"
+    },
+    {
+      "command": [
+        "moon",
+        "build",
+        "--target",
+        "js"
+      ],
+      "exit": 0,
+      "seconds": 1.16,
+      "log": "xiangqi-build---target-js.log"
+    }
+  ],
+  "workflow_checks": [
+    {
+      "command": [
+        "node",
+        "tools/test-engine.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.87,
+      "log": "xiangqi-workflow-0.log"
+    }
+  ],
+  "interpretation": "本轮真实进程检查覆盖节点/时间预算、搜索中 isready、stop 与 quit；不是专业棋力比赛或 GUI 长期兼容验收。",
+  "limit": "评估仍较简单，无专业 Elo/赛事棋力证明、开局库或完整长捉裁决；UCCI 专用时间选项未完全实现。",
+  "remote_push_performed": false
+}
