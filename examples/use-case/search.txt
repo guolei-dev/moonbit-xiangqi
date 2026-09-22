@@ -1,0 +1,3 @@
+ucci
+position startpos
+go nodes 1000

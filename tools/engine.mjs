@@ -79,8 +79,8 @@ export function serve() {
     if (quitting || !line) return;
     if (line.length > 65536) throw Error('command exceeds 65536 characters');
     if (line === 'uci' || line === 'ucci') {
-      write('id name MoonBit Xiangqi Local 0.4.0');
-      write('id author localreview');
+      write('id name MoonBit Xiangqi 0.4.0');
+      write('id author guolei-dev');
       write(line + 'ok');
     } else if (line === 'isready') write('readyok');
     else if (line === 'stop') await stop();

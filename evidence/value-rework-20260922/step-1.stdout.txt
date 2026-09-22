@@ -1,0 +1,6 @@
+id name MoonBit Xiangqi 0.4.0
+id author guolei-dev
+ucciok
+info depth 1 score cp 0 nodes 58 pv a3a4 time 79
+info depth 1 score cp 0 nodes 1000 pv a3a4 time 138
+bestmove a3a4

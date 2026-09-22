@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-22",
+  "command": "node examples/run-use-case.mjs",
+  "passed": true,
+  "scope": "初始棋局与固定节点预算；演示可调用搜索，不证明 Elo 或优于已有 MoonBit 象棋库。",
+  "actualUsersProven": false,
+  "externalServicesContacted": false,
+  "sourceSha256": {
+    "board.mbt": "880e7a6c99bf15c4b1b850f1490333c9bf96d28f6a8b3aab1caddd61c945f016",
+    "core_test.mbt": "becfd593d7a4438056d642b9df3c212c615d0ffa3a79c4424ee8e3bfa229c515",
+    "game.mbt": "03b1afe3665e3120aeeea8808c4e00d7b40e526235a0e20beef15df68080850c",
+    "game_test.mbt": "54fa1d1e9afd1a190f85c6b07d935a6ba280e54515a857ea5665291ed5dc1695",
+    "moon.mod": "cb1d53a2f27842bc12b704a491f16f32208390e92814a40344dcbcb26a3e98ec",
+    "moon.pkg": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "native_golden_test.mbt": "0a61f9cde9b751edbb0915d1439c983fa4fd55c909ae3d8deb017ce52475975c",
+    "pkg.generated.mbti": "5ae2968e125137db4b44a4f36d6f3a3829bc07034cbdf7ed8839bb5a8ee0444a",
+    "search.mbt": "ac69f7bdd2297f8298d54630244af85617505f1e813e395837096be7ced7e36d",
+    "search_test.mbt": "17b995255b2188c31487a913ed12c95b61e8ecd4aafae9949e79d4a1b572152f",
+    "usability.mbt": "58c6a9c7857144018821cddcaaf0aec6f90e294c76de3805daed5cc307c3b5a6",
+    "examples/run-use-case.mjs": "359ea34b13ee185b6cae0536da5e25bb56bfc51d2e5dd166c304b1684003a3bb",
+    "examples/use-case.json": "54fc8c77157a80873eec0e8c3ae549d581c358760a3efe499beb5507fe39735e",
+    "tools/benchmark.mjs": "53ac611536ba7cb3732017d22976ff8f38dbd9e7aa579c2469eab75b0cdc7216",
+    "tools/cli.mjs": "f98839799f2896c92a75e6565add432efe166f00bc3fed89e03d6d59eca688d4",
+    "tools/engine-worker.mjs": "75068523abb15987d9b07172807be535d3de073653cdffd16d4b32eb6d725f8a",
+    "tools/engine.mjs": "8dabce70a6375e2392777ee99e4da7d9c9db1d7aad0e87017b75abe739fb481c",
+    "tools/robustness.mjs": "24964a078897dccc448ba3d5db4c08f6446d38008424987bf26b4b6f042a21d6",
+    "tools/test-cli.mjs": "b1acaf8992e16d37e1527fd60beeea275ce0df574a9622ab3b44d86dcaf08b03",
+    "tools/test-demo.mjs": "02ec6337b9c72c299450db6f0d2b024fd4fd96193d17e5cd501c3a8e6eb87188",
+    "tools/test-engine.mjs": "6d7cfbca19eed01648db00722f30d71ccd5b7d889b1c71f436d38974969bc5a2",
+    "tools/test-gameplay.mjs": "54caf9d9f31d4ac3770f89cf40caeb4d585c0a7e25f16f8cea5d875d78934456",
+    "tools/test-native.mjs": "e4ad0b62853143cceb347e4d7799f5b30f91d74d07d293eb9a20bd4c9ff07223",
+    "tools/test-perft.mjs": "cba26c293db2631e2ab9fa45bb90e2887e41f3191e7303f9cb38b7200720c05e",
+    "web/app.mjs": "12ab588b3d99f197ab655296ed892a92901e40907ce5abbf8a182c56a721ac2b",
+    "web/config.mjs": "3298c91dec8732cfff2a800b9b6c84d151953639b676845ab6f77ab61d8f91c6",
+    "web/engine.mjs": "4a8c4919e1e62aaefb821624fcf7a0cbc0a5ff8cdf04dac691107272ea8ddce1",
+    "examples/use-case/search.txt": "e4223a254fa76a3d195aebf72981b021f80a668a4ec06c54003a953d5a2c0378",
+    "cmd/main/main.mbt": "4dce239a1b485d3d1f3d690fa000d5acd270e478e45df8680f721c7a593b6834",
+    "cmd/main/moon.pkg": "576d61c61830366207eb48ea8e8e23e8859c8ae60b1e5377992ee4978b201123",
+    "cmd/main/pkg.generated.mbti": "660119fce1fe7f37d3a45005d0d4b4a5f0eda2da2bc81aba69b7e473c76ef842",
+    "cmd/web/main.mbt": "401716f7ee4b01eed41d971c86e53f8786a08e47296cf31d3aebc64b569f210b",
+    "cmd/web/moon.pkg": "87eb3d132a0d9e949efe4d7d563d9bcc2c5b03d2c4a9dd5c185f1f3006966799"
+  },
+  "outputs": [
+    {
+      "file": "step-1.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "step-1.stdout.txt",
+      "bytes": 173,
+      "sha256": "5ac8b24a6c606d5503561c8c73e29c2e543f1768eea082d95a6c6fa79f0792b1"
+    }
+  ],
+  "additionalChecks": {
+    "checks": [
+      "node examples/run-use-case.mjs"
+    ],
+    "output": [
+      "Handshake now identifies guolei-dev; finite search returned bestmove and exited"
+    ],
+    "searchAlgorithmChanged": false
+  },
+  "previousCoreValidation": "evidence/innovation-review-20260922/results.json",
+  "note": "New sample execution only; earlier core/reference checks retain their original scope. Command output logs replace the machine-specific temporary directory with {output}; output hashes refer to original bytes.",
+  "sourceHashBasis": "Git-normalized blobs in the delivered source archive. Protocol fixtures are explicitly -text to preserve CRLF; ordinary source line endings normalize to LF."
+}

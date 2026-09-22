@@ -1,0 +1,17 @@
+{
+  "project": "xiangqi",
+  "title": "可取消、有节点与时间预算的象棋搜索服务",
+  "module": "guolei-dev/xiangqi",
+  "version": "0.4.0",
+  "repository": "https://github.com/guolei-dev/moonbit-xiangqi",
+  "status": "条件复审",
+  "remainingRisk": "没有 Elo 或独立棋力优势；只证明搜索生命周期，不把 GUI 或规则数量当创新。",
+  "actualUsersClaimed": false,
+  "anonymousCloneVerified": true,
+  "publicHead": "2a0541d09a1569eb513444a7b6f5a2b2ba964de8",
+  "defaultBranch": "origin/main",
+  "localChangesPublished": false,
+  "proposalLines": 25,
+  "useCase": "对固定局面运行有限节点搜索",
+  "diff": "wbgxiaosu/xiangqi 已有规则、FEN、中文记谱、长将历史与 UCCI。规则/UCCI 本身不主张新增价值；本项目明确聚焦预算、取消及可独立集成的搜索服务。没有证明棋力超过对方或专业引擎。"
+}

@@ -1,0 +1,13 @@
+{
+  "title": "对固定局面运行有限节点搜索",
+  "scope": "初始棋局与固定节点预算；演示可调用搜索，不证明 Elo 或优于已有 MoonBit 象棋库。",
+  "steps": [
+    {
+      "args": [
+        "tools/engine.mjs"
+      ],
+      "stdinFile": "examples/use-case/search.txt"
+    }
+  ],
+  "expected": "输出 ucciok、搜索信息和合法 bestmove，标准输入关闭后进程结束。"
+}
